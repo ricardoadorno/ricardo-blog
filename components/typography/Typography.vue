@@ -11,14 +11,12 @@ interface Props extends PrimitiveProps {
   class?: HTMLAttributes['class'];
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  as: 'p',
-});
+const props = defineProps<Props>();
 </script>
 
 <template>
   <Primitive
-    :as="as"
+    :as="as ?? String(variant)"
     :as-child="asChild"
     :class="cn(typographyVariants({ variant, affects }), props.class)">
     <slot />
