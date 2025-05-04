@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { MyLink } from '@/components/ui/MyLink';
 import { PostData } from '@/lib/markdown';
 
 interface BlogCardProps {
@@ -7,7 +7,7 @@ interface BlogCardProps {
 
 export function BlogCard({ post }: BlogCardProps) {
     return (
-        <div className="p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow">
+        <div className="p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow dark:border-gray-800 dark:bg-gray-800/50">
             {post.coverImage && (
                 <div className="mb-4 aspect-video overflow-hidden rounded-md">
                     <img
@@ -19,13 +19,13 @@ export function BlogCard({ post }: BlogCardProps) {
             )}
 
             <div className="space-y-2">
-                <h2 className="text-xl font-bold">
-                    <Link href={`/blog/${post.slug}`} className="hover:underline">
+                <h2 className="text-xl font-bold dark:text-white">
+                    <MyLink href={`/blog/${post.slug}`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                         {post.title}
-                    </Link>
+                    </MyLink>
                 </h2>
 
-                <div className="flex items-center text-sm text-gray-500">
+                <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
                     <time dateTime={post.date}>
                         {new Date(post.date).toLocaleDateString('en-US', {
                             year: 'numeric',
@@ -41,20 +41,30 @@ export function BlogCard({ post }: BlogCardProps) {
                     )}
                 </div>
 
-                <p className="text-gray-600">{post.excerpt}</p>
+                <p className="text-gray-600 dark:text-gray-300 line-clamp-2">{post.excerpt}</p>
 
                 {post.tags && post.tags.length > 0 && (
                     <div className="flex flex-wrap gap-2 pt-2">
                         {post.tags.map((tag) => (
-                            <span
+                            <MyLink
                                 key={tag}
-                                className="px-2 py-1 text-xs bg-gray-100 rounded-full text-gray-700"
+                                href={`/tag/${tag}`}
+                                className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
                             >
                                 {tag}
-                            </span>
+                            </MyLink>
                         ))}
                     </div>
                 )}
+
+                <div className="pt-2">
+                    <MyLink
+                        href={`/blog/${post.slug}`}
+                        className="text-blue-600 dark:text-blue-400 text-sm hover:underline inline-flex items-center"
+                    >
+                        Read more <span className="ml-1">→</span>
+                    </MyLink>
+                </div>
             </div>
         </div>
     );
