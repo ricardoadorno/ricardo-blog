@@ -7,7 +7,7 @@ export function Header() {
             <div className="container mx-auto px-4 py-4">
                 <nav className="flex justify-between items-center">
                     <MyLink href="/" className="text-xl font-bold dark:text-white">
-                        Ricardo's Blog
+                        Ricardo Blog
                     </MyLink>
                     <div className="flex items-center gap-6">
                         <ul className="flex gap-6">

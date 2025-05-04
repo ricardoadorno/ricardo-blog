@@ -1,12 +1,10 @@
 import { getSortedPostsData } from "@/lib/markdown";
-import Image from "next/image";
 import { MyLink } from "@/components/ui/MyLink";
-import { Button, buttonVariants } from '@/components/ui/button';
+import { OptimizedImage } from '@/components/blog/OptimizedImage';
 
 export default function Home() {
   const allPosts = getSortedPostsData();
   const featuredPosts = allPosts.slice(0, 2);
-  const latestPosts = allPosts.slice(0, 6);
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -15,7 +13,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12">
           <div className="lg:w-1/2">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 dark:text-white">
-              Hi, I'm Ricardo
+              Hi, I’m Ricardo
             </h1>
             <p className="text-xl mb-8 text-gray-600 dark:text-gray-300">
               Web developer, designer, and technology enthusiast. I write about modern web development,
@@ -59,10 +57,9 @@ export default function Home() {
               <div key={post.slug} className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow dark:border-gray-800">
                 <div className="h-48 bg-gray-100 dark:bg-gray-800 relative">
                   {post.coverImage ? (
-                    <Image
+                    <OptimizedImage
                       src={post.coverImage}
                       alt={post.title}
-                      fill
                       className="object-cover"
                     />
                   ) : (

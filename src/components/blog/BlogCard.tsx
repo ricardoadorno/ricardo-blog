@@ -1,5 +1,6 @@
 import { MyLink } from '@/components/ui/MyLink';
 import { PostData } from '@/lib/markdown';
+import { OptimizedImage } from './OptimizedImage';
 
 interface BlogCardProps {
     post: PostData;
@@ -10,7 +11,7 @@ export function BlogCard({ post }: BlogCardProps) {
         <div className="p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow dark:border-gray-800 dark:bg-gray-800/50">
             {post.coverImage && (
                 <div className="mb-4 aspect-video overflow-hidden rounded-md">
-                    <img
+                    <OptimizedImage
                         src={post.coverImage}
                         alt={`Cover image for ${post.title}`}
                         className="w-full h-full object-cover"

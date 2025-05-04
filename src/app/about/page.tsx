@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-    title: "About Me | Ricardo's Blog",
+    title: "About Me | Ricardo’s Blog",
     description: "Learn more about Ricardo, a web developer and technology enthusiast sharing insights on web development, design patterns, and emerging technologies."
 };
 
@@ -31,7 +31,7 @@ export default function AboutPage() {
                         <div className="md:w-2/3">
                             <div className="prose dark:prose-invert">
                                 <p className="text-lg leading-relaxed dark:text-gray-300">
-                                    Hi there! I'm Ricardo, a passionate web developer and technology enthusiast.
+                                    Hi there! I’m Ricardo, a passionate web developer and technology enthusiast.
                                     I specialize in building modern web applications with a focus on performance,
                                     accessibility, and user experience.
                                 </p>
@@ -57,27 +57,27 @@ export default function AboutPage() {
 
                         <h2>My Background</h2>
                         <p>
-                            I've been working in web development for several years, focusing on creating performant,
+                            I’ve been working in web development for several years, focusing on creating performant,
                             accessible, and user-friendly applications. My expertise includes React, TypeScript,
                             and various frontend and backend technologies.
                         </p>
 
                         <h2>Projects</h2>
                         <p>
-                            Throughout my career, I've worked on a variety of projects, from e-commerce platforms
-                            to content management systems and data visualization tools. I'm particularly interested
+                            Throughout my career, I’ve worked on a variety of projects, from e-commerce platforms
+                            to content management systems and data visualization tools. I’m particularly interested
                             in projects that leverage modern web technologies to solve real-world problems.
                         </p>
 
                         <h2>Contact Me</h2>
                         <p>
-                            I'm always open to discussing new projects, opportunities, or just chatting about
+                            I’m always open to discussing new projects, opportunities, or just chatting about
                             technology. Feel free to reach out to me on social media or via email.
                         </p>
                     </div>
 
                     <div className="mt-10 pt-8 border-t dark:border-gray-700">
-                        <h3 className="text-xl font-bold mb-4 dark:text-white">Let's Connect</h3>
+                        <h3 className="text-xl font-bold mb-4 dark:text-white">Let’s Connect</h3>
                         <div className="flex flex-wrap gap-4">
                             <a href="https://twitter.com" className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-colors">Twitter</a>
                             <a href="https://github.com" className="px-6 py-3 bg-gray-800 hover:bg-gray-900 text-white rounded-md transition-colors">GitHub</a>

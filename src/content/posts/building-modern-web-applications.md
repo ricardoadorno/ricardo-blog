@@ -3,7 +3,7 @@ title: "Building Modern Web Applications"
 date: "2025-04-30"
 excerpt: "Exploring the latest techniques for building robust web applications with React and Next.js"
 author: "Ricardo"
-coverImage: "/images/modern-web.jpg"
+coverImage: ""
 tags: ["react", "next.js", "web development", "javascript"]
 ---
 

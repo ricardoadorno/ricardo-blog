@@ -3,7 +3,7 @@ title: "Hello World"
 date: "2025-05-04"
 excerpt: "Welcome to my Next.js blog with Tailwind and Markdown!"
 author: "Ricardo"
-coverImage: "/images/hello-world.jpg"
+coverImage: ""
 tags: ["next.js", "tailwind", "markdown"]
 ---
 

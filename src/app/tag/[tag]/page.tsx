@@ -3,40 +3,43 @@ import { BlogGrid } from "@/components/blog/BlogGrid";
 import { TagCloud } from "@/components/blog/TagCloud";
 import Link from "next/link";
 import { Metadata } from "next";
+import fs from 'fs';
+import path from 'path';
 
-// Generate static paths for all tags
-export async function generateStaticParams() {
-    const allPosts = getSortedPostsData();
-    const allTags = new Set<string>();
+export function generateStaticParams() {
+    // Get all post tag from markdown files
+    const fileNames = fs.readdirSync(path.join(process.cwd(), 'src/content/posts'));
 
-    allPosts.forEach(post => {
-        post.tags?.forEach(tag => {
-            allTags.add(tag);
-        });
+    // Create the appropriate params object for each tag
+    return fileNames.map((fileName) => {
+        return {
+            tag: fileName.replace(/\.md$/, ''),
+        };
     });
-
-    return Array.from(allTags).map(tag => ({
-        tag: tag,
-    }));
 }
 
 // Generate metadata for each tag page
-export async function generateMetadata({ params }: { params: { tag: string } }): Promise<Metadata> {
-    const tag = decodeURIComponent(params.tag);
+export async function generateMetadata({ params }: { params: Promise<{ tag: string }> }): Promise<Metadata> {
+    // Await the params before using them
+    const { tag } = await params;
+    const tagDecodded = decodeURIComponent(tag);
 
     return {
-        title: `Posts tagged with "${tag}" | Ricardo's Blog`,
-        description: `Browse all posts tagged with "${tag}" on Ricardo's Blog`,
+        title: `Posts tagged with "${tagDecodded}" | Ricardo's Blog`,
+        description: `Browse all posts tagged with "${tagDecodded}" on Ricardo's Blog`,
     };
 }
 
-export default function TagPage({ params }: { params: { tag: string } }) {
+export default async function TagPage({ params }: { params: Promise<{ tag: string }> }) {
+
+    const { tag } = await params;
+    const tagDecodded = decodeURIComponent(tag);
+
     const allPosts = getSortedPostsData();
-    const tag = decodeURIComponent(params.tag);
 
     // Filter posts by tag
     const filteredPosts = allPosts.filter(post =>
-        post.tags?.includes(tag)
+        post.tags?.includes(tagDecodded)
     );
 
     return (
@@ -50,13 +53,13 @@ export default function TagPage({ params }: { params: { tag: string } }) {
 
                 <header className="mb-10">
                     <h1 className="text-3xl font-bold mb-4 dark:text-white">
-                        Posts tagged with "{tag}"
+                        Posts tagged with {tagDecodded}
                     </h1>
                 </header>
 
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
                     <div className="lg:col-span-1">
-                        <TagCloud posts={allPosts} selectedTag={tag} />
+                        <TagCloud posts={allPosts} selectedTag={tagDecodded} />
                     </div>
 
                     <div className="lg:col-span-3">
