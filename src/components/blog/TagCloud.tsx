@@ -1,8 +1,8 @@
 import { MyLink } from '@/components/ui/MyLink';
-import { PostData } from "@/lib/markdown";
+import { PostMeta } from "@/lib/mdx";
 
 interface TagCloudProps {
-    posts: PostData[];
+    posts: PostMeta[];
     selectedTag?: string;
 }
 

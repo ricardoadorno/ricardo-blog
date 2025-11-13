@@ -1,4 +1,4 @@
-import { getPostData, getSortedPostsData } from "@/lib/markdown";
+import { getPostData, getRelatedPosts, extractHeadingsFromMd, getAllPostSlugs } from "@/lib/mdx";
 import { MyLink } from "@/components/ui/MyLink";
 import { Metadata } from "next";
 import { ArticleSchema } from "@/components/seo/ArticleSchema";
@@ -11,15 +11,8 @@ import path from 'path';
 
 // Generate static paths for all blog posts
 export async function generateStaticParams() {
-    // Get all post slugs from markdown files
-    const fileNames = fs.readdirSync(path.join(process.cwd(), 'src/content/posts'));
-
-    // Create the appropriate params object for each slug
-    return fileNames.map((fileName) => {
-        return {
-            slug: fileName.replace(/\.md$/, ''),
-        };
-    });
+    const slugs = getAllPostSlugs();
+    return slugs.map((slug) => ({ slug }));
 }
 
 // Generate metadata for the page
@@ -68,46 +61,21 @@ function calculateReadingTime(content: string): number {
     return Math.ceil(words / wordsPerMinute);
 }
 
-// Get related posts based on tags
-function getRelatedPosts(currentSlug: string, currentTags: string[] = []) {
-    if (!currentTags.length) return [];
-
-    const allPosts = getSortedPostsData();
-
-    // Filter out current post and find posts with matching tags
-    return allPosts
-        .filter(post => post.slug !== currentSlug && post.tags?.some(tag => currentTags.includes(tag)))
-        .slice(0, 3); // Get top 3 related posts
-}
-
-// Extract headings from content for table of contents
-function extractHeadings(content: string) {
-    const headingRegex = /<h([2-3])[^>]*id="([^"]+)"[^>]*>(.*?)<\/h\1>/g;
-    const headings = [];
-    let match;
-
-    while ((match = headingRegex.exec(content)) !== null) {
-        headings.push({
-            level: parseInt(match[1], 10),
-            id: match[2],
-            text: match[3].replace(/<[^>]+>/g, ''),
-        });
-    }
-
-    return headings;
-}
-
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
 
-    const fileNames = fs.readdirSync(path.join(process.cwd(), 'src/content/posts'));
-    console.log('gen', fileNames);
-
-
     const postData = await getPostData(slug);
-    const readingTime = calculateReadingTime(postData.content);
-    const relatedPosts = getRelatedPosts(slug, postData.tags);
-    const headings = extractHeadings(postData.content);
+
+    // Read raw content for reading time calculation
+    let fullPath = path.join(process.cwd(), 'src/content/posts', `${slug}.mdx`);
+    if (!fs.existsSync(fullPath)) {
+        fullPath = path.join(process.cwd(), 'src/content/posts', `${slug}.md`);
+    }
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const readingTime = calculateReadingTime(fileContents);
+
+    const relatedPosts = getRelatedPosts(slug, postData.tags, postData.category);
+    const headings = extractHeadingsFromMd(fileContents.split('---').slice(2).join('---'));
 
     // Prepare breadcrumbs data
     const breadcrumbs = [
@@ -170,7 +138,10 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                             <TableOfContents headings={headings} />
                         )}
 
-                        <div dangerouslySetInnerHTML={{ __html: postData.content }} />
+                        {/* Render MDX content */}
+                        <div className="mdx-content">
+                            {postData.content}
+                        </div>
 
                         {postData.tags && postData.tags.length > 0 && (
                             <div className="mt-8 pt-4 border-t dark:border-gray-800 not-prose">

@@ -1,0 +1,172 @@
+---
+title: "Building Modern Web Applications"
+date: "2025-04-30"
+excerpt: "Exploring the latest techniques for building robust web applications with React and Next.js"
+author: "Ricardo"
+coverImage: ""
+tags: ["react", "next.js", "web development", "javascript"]
+category: "Web Development"
+---
+
+# Building Modern Web Applications
+
+Modern web development has evolved significantly over the past few years. In this post, I'll share some insights about building robust web applications using the latest technologies.
+
+<Callout type="info" title="Article Overview">
+This article covers server-side rendering, static site generation, React Server Components, and modern styling techniques with Tailwind CSS.
+</Callout>
+
+## The Current Landscape
+
+Today's web applications need to be:
+
+- **Fast and responsive** - Users expect immediate feedback
+- **Accessible** - Usable by everyone, regardless of abilities
+- **Secure** - Protected against common vulnerabilities
+- **SEO-friendly** - Discoverable by search engines
+- **Maintainable** - Easy to update and extend
+
+## Next.js: The Full-Stack React Framework
+
+Next.js has become my go-to framework for building modern web applications. Here's why:
+
+### Server-Side Rendering
+
+Server-side rendering (SSR) provides significant benefits for SEO and initial page load performance:
+
+```jsx
+// pages/index.js
+export async function getServerSideProps() {
+  const res = await fetch('https://api.example.com/data')
+  const data = await res.json()
+
+  return { props: { data } }
+}
+
+export default function Home({ data }) {
+  return (
+    <div>
+      <h1>Welcome</h1>
+      {/* Render your data */}
+    </div>
+  )
+}
+```
+
+<Callout type="info">
+Server-side rendering happens on every request, making it perfect for dynamic content that changes frequently.
+</Callout>
+
+### Static Site Generation
+
+For content that doesn't change frequently, static site generation (SSG) offers incredible performance:
+
+```jsx
+// pages/blog/[slug].js
+export async function getStaticPaths() {
+  // Return a list of possible values for slug
+  const posts = await getAllPosts()
+
+  return {
+    paths: posts.map(post => ({
+      params: { slug: post.slug }
+    })),
+    fallback: false
+  }
+}
+
+export async function getStaticProps({ params }) {
+  // Fetch data based on slug
+  const post = await getPostBySlug(params.slug)
+
+  return {
+    props: { post }
+  }
+}
+```
+
+<Callout type="success" title="Performance Tip">
+Static site generation generates HTML at build time, resulting in lightning-fast page loads!
+</Callout>
+
+## React Server Components
+
+Next.js 15 brings React Server Components, which allow you to render components on the server, reducing JavaScript sent to the client:
+
+```jsx
+// app/page.js
+async function getData() {
+  const res = await fetch('https://api.example.com/data')
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
+
+  return res.json()
+}
+
+export default async function Page() {
+  const data = await getData()
+
+  return (
+    <main>
+      <h1>Server Component</h1>
+      {data.items.map(item => (
+        <div key={item.id}>{item.name}</div>
+      ))}
+    </main>
+  )
+}
+```
+
+<Callout type="warning" title="Important Distinction">
+Server Components run only on the server, while Client Components (marked with 'use client') can have interactivity and use hooks.
+</Callout>
+
+## Styling with Tailwind CSS
+
+Tailwind CSS has revolutionized how we style applications by providing utility-first CSS classes:
+
+```jsx
+function Button({ children, variant = 'primary' }) {
+  const baseStyles = "px-4 py-2 rounded font-medium transition-colors"
+  const variants = {
+    primary: "bg-blue-500 text-white hover:bg-blue-600",
+    secondary: "bg-gray-200 text-gray-800 hover:bg-gray-300",
+    danger: "bg-red-500 text-white hover:bg-red-600"
+  }
+
+  return (
+    <button className={`${baseStyles} ${variants[variant]}`}>
+      {children}
+    </button>
+  )
+}
+```
+
+### Benefits of Tailwind CSS
+
+1. **No context switching** - Write styles directly in JSX
+2. **Consistency** - Predefined design system
+3. **Tree-shaking** - Only used styles are included
+4. **Responsive design** - Built-in responsive utilities
+
+```jsx
+// Responsive example
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  {/* Your content */}
+</div>
+```
+
+## Conclusion
+
+Building modern web applications requires carefully choosing the right tools and techniques. With Next.js, React, and Tailwind CSS, you have a powerful foundation for creating fast, accessible, and maintainable web experiences.
+
+<Callout type="success" title="Key Takeaways">
+- Use SSR for dynamic content that changes frequently
+- Use SSG for static content for best performance
+- Leverage React Server Components to reduce client-side JavaScript
+- Adopt Tailwind CSS for rapid, consistent styling
+</Callout>
+
+Stay tuned for more posts about specific aspects of modern web development!

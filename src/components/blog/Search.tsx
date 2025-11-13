@@ -1,17 +1,17 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { PostData } from '@/lib/markdown';
+import { PostMeta } from '@/lib/mdx';
 import { BlogGrid } from './BlogGrid';
 import { useDebounce } from '@/hooks/use-debaunce';
 
 interface SearchProps {
-    posts: PostData[];
+    posts: PostMeta[];
 }
 
 export function Search({ posts }: SearchProps) {
     const [searchTerm, setSearchTerm] = useState('');
-    const [searchResults, setSearchResults] = useState<PostData[]>([]);
+    const [searchResults, setSearchResults] = useState<PostMeta[]>([]);
     const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
     // Filter posts based on search term with improved search algorithm

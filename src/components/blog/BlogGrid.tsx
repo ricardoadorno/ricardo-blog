@@ -1,8 +1,8 @@
-import { PostData } from "@/lib/markdown";
+import { PostMeta } from "@/lib/mdx";
 import { BlogCard } from "./BlogCard";
 
 interface BlogGridProps {
-    posts: PostData[];
+    posts: PostMeta[];
 }
 
 export function BlogGrid({ posts }: BlogGridProps) {

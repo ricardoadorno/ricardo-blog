@@ -1,21 +1,17 @@
-import { getSortedPostsData } from "@/lib/markdown";
+import { getSortedPostsData, getAllTags } from "@/lib/mdx";
 import { BlogGrid } from "@/components/blog/BlogGrid";
 import { TagCloud } from "@/components/blog/TagCloud";
 import Link from "next/link";
 import { Metadata } from "next";
-import fs from 'fs';
-import path from 'path';
 
 export function generateStaticParams() {
-    // Get all post tag from markdown files
-    const fileNames = fs.readdirSync(path.join(process.cwd(), 'src/content/posts'));
+    // Get all unique tags from all posts
+    const tags = getAllTags();
 
     // Create the appropriate params object for each tag
-    return fileNames.map((fileName) => {
-        return {
-            tag: fileName.replace(/\.md$/, ''),
-        };
-    });
+    return tags.map(({ tag }) => ({
+        tag: encodeURIComponent(tag),
+    }));
 }
 
 // Generate metadata for each tag page

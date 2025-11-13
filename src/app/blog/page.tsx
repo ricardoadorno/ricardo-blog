@@ -1,4 +1,4 @@
-import { getSortedPostsData } from "@/lib/markdown";
+import { getSortedPostsData } from "@/lib/mdx";
 import { BlogGrid } from "@/components/blog/BlogGrid";
 import { TagCloud } from "@/components/blog/TagCloud";
 import { Search } from "@/components/blog/Search";
