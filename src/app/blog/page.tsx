@@ -1,4 +1,4 @@
-import { getSortedPostsData } from "@/lib/mdx";
+import { getSortedPostsData, getAllTags } from "@/lib/mdx";
 import { BlogGrid } from "@/components/blog/BlogGrid";
 import { TagCloud } from "@/components/blog/TagCloud";
 import { Search } from "@/components/blog/Search";
@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 
 export default function BlogIndexPage() {
     const posts = getSortedPostsData();
+    const tags = getAllTags();
 
     return (
         <main className="container mx-auto px-4 py-8">
@@ -30,16 +31,16 @@ export default function BlogIndexPage() {
                 </header>
 
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
-                    <div className="lg:col-span-1">
-                        <TagCloud posts={posts} />
-                    </div>
+                    <aside className="lg:col-span-1">
+                        <TagCloud tags={tags} className="mb-8" />
+                    </aside>
 
                     <div className="lg:col-span-3">
                         <Search posts={posts} />
 
-                        <section>
-                            <h2 className="text-2xl font-bold mb-6 dark:text-white">All Posts</h2>
-                            <BlogGrid posts={posts} />
+                        <section className="mt-8">
+                            <h2 className="text-2xl font-bold mb-6 dark:text-white">Latest Articles</h2>
+                            <BlogGrid posts={posts} featured={true} />
                         </section>
                     </div>
                 </div>

@@ -32,6 +32,7 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
     const tagDecodded = decodeURIComponent(tag);
 
     const allPosts = getSortedPostsData();
+    const allTags = getAllTags();
 
     // Filter posts by tag
     const filteredPosts = allPosts.filter(post =>
@@ -54,16 +55,16 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
                 </header>
 
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
-                    <div className="lg:col-span-1">
-                        <TagCloud posts={allPosts} selectedTag={tagDecodded} />
-                    </div>
+                    <aside className="lg:col-span-1">
+                        <TagCloud tags={allTags} selectedTag={tagDecodded} className="mb-8" />
+                    </aside>
 
                     <div className="lg:col-span-3">
                         {filteredPosts.length > 0 ? (
                             <BlogGrid posts={filteredPosts} />
                         ) : (
                             <div className="text-center py-10">
-                                <p className="text-gray-500 dark:text-gray-400">No posts found with this tag.</p>
+                                <p className="text-muted-foreground">No posts found with this tag.</p>
                             </div>
                         )}
                     </div>

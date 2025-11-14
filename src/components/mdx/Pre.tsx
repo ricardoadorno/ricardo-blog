@@ -2,14 +2,23 @@
 
 import { useState } from 'react';
 import { Check, Copy } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface PreProps {
   children?: React.ReactNode;
   raw?: string;
+  language?: string;
+  filename?: string;
   [key: string]: unknown;
 }
 
-export function Pre({ children, raw, ...props }: PreProps) {
+export function Pre({
+  children,
+  raw,
+  language,
+  filename,
+  ...props
+}: PreProps) {
   const [copied, setCopied] = useState(false);
 
   // Extract code from children if raw not provided
@@ -40,21 +49,56 @@ export function Pre({ children, raw, ...props }: PreProps) {
   };
 
   return (
-    <div className="group relative">
-      <pre {...props} className="overflow-x-auto rounded-lg bg-gray-900 p-4 text-sm dark:bg-gray-950">
-        {children}
-      </pre>
-      <button
-        onClick={handleCopy}
-        className="absolute right-2 top-2 rounded-md bg-gray-700 p-2 opacity-0 transition-opacity hover:bg-gray-600 group-hover:opacity-100"
-        aria-label="Copy code"
-      >
-        {copied ? (
-          <Check className="h-4 w-4 text-green-400" />
-        ) : (
-          <Copy className="h-4 w-4 text-gray-300" />
-        )}
-      </button>
+    <div className="group relative my-6 overflow-hidden rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm">
+      {/* Header with filename and language */}
+      {(filename || language) && (
+        <div className="flex items-center justify-between border-b border-border/50 bg-muted/30 px-4 py-2">
+          <div className="flex items-center gap-2">
+            {filename && (
+              <span className="text-sm font-medium text-foreground">
+                {filename}
+              </span>
+            )}
+            {language && !filename && (
+              <span className="text-xs font-mono uppercase text-muted-foreground">
+                {language}
+              </span>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Code block */}
+      <div className="relative">
+        <pre
+          {...props}
+          className={cn(
+            "overflow-x-auto p-4 text-sm leading-relaxed",
+            "scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent"
+          )}
+        >
+          {children}
+        </pre>
+
+        {/* Copy button */}
+        <button
+          onClick={handleCopy}
+          className={cn(
+            "absolute right-3 top-3 rounded-md p-2",
+            "bg-background/80 backdrop-blur-sm border border-border/50",
+            "opacity-0 transition-all duration-200",
+            "group-hover:opacity-100 hover:bg-accent hover:scale-110",
+            "focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          )}
+          aria-label="Copy code to clipboard"
+        >
+          {copied ? (
+            <Check className="h-4 w-4 text-green-500" />
+          ) : (
+            <Copy className="h-4 w-4 text-muted-foreground" />
+          )}
+        </button>
+      </div>
     </div>
   );
 }

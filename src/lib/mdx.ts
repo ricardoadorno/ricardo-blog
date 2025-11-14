@@ -246,3 +246,25 @@ export function getAllCategories(): { category: string; count: number }[] {
     .map(([category, count]) => ({ category, count }))
     .sort((a, b) => a.category.localeCompare(b.category));
 }
+
+/**
+ * Get adjacent posts (previous and next) for navigation
+ */
+export function getAdjacentPosts(currentSlug: string): {
+  prev: PostMeta | null;
+  next: PostMeta | null;
+} {
+  const allPosts = getSortedPostsData(); // Already sorted by date (newest first)
+  const currentIndex = allPosts.findIndex((post) => post.slug === currentSlug);
+
+  if (currentIndex === -1) {
+    return { prev: null, next: null };
+  }
+
+  // Previous post is older (higher index in array)
+  const prev = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+  // Next post is newer (lower index in array)
+  const next = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
+
+  return { prev, next };
+}

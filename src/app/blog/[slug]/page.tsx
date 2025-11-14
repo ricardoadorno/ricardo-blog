@@ -1,10 +1,15 @@
-import { getPostData, getRelatedPosts, extractHeadingsFromMd, getAllPostSlugs } from "@/lib/mdx";
+import { getPostData, getRelatedPosts, getAllPostSlugs, getAdjacentPosts } from "@/lib/mdx";
+import { extractHeadings, calculateReadingTime as calcReadingTime } from "@/lib/toc";
 import { MyLink } from "@/components/ui/MyLink";
 import { Metadata } from "next";
 import { ArticleSchema } from "@/components/seo/ArticleSchema";
 import { BreadcrumbsSchema } from "@/components/seo/BreadcrumbsSchema";
 import { OptimizedImage } from "@/components/blog/OptimizedImage";
 import { TableOfContents } from "@/components/blog/TableOfContents";
+import { ScrollProgress } from "@/components/blog/ScrollProgress";
+import { Breadcrumbs } from "@/components/blog/Breadcrumbs";
+import { ReadingTime } from "@/components/blog/ReadingTime";
+import { PostNavigation } from "@/components/blog/PostNavigation";
 import { SkipLink } from "@/components/ui/SkipLink";
 import fs from 'fs';
 import path from 'path';
@@ -54,28 +59,23 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
 }
 
-// Calculate reading time
-function calculateReadingTime(content: string): number {
-    const wordsPerMinute = 200;
-    const words = content.trim().split(/\s+/).length;
-    return Math.ceil(words / wordsPerMinute);
-}
-
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
 
     const postData = await getPostData(slug);
 
-    // Read raw content for reading time calculation
+    // Read raw content for reading time and headings
     let fullPath = path.join(process.cwd(), 'src/content/posts', `${slug}.mdx`);
     if (!fs.existsSync(fullPath)) {
         fullPath = path.join(process.cwd(), 'src/content/posts', `${slug}.md`);
     }
     const fileContents = fs.readFileSync(fullPath, 'utf8');
-    const readingTime = calculateReadingTime(fileContents);
+    const contentWithoutFrontmatter = fileContents.split('---').slice(2).join('---');
 
+    const readingTime = calcReadingTime(contentWithoutFrontmatter);
+    const headings = extractHeadings(contentWithoutFrontmatter);
     const relatedPosts = getRelatedPosts(slug, postData.tags, postData.category);
-    const headings = extractHeadingsFromMd(fileContents.split('---').slice(2).join('---'));
+    const { prev, next } = getAdjacentPosts(slug);
 
     // Prepare breadcrumbs data
     const breadcrumbs = [
@@ -93,19 +93,19 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             {/* Add accessibility skip link */}
             <SkipLink />
 
+            {/* Scroll progress indicator */}
+            <ScrollProgress />
+
             <main id="main-content" className="container mx-auto px-4 py-8">
                 <div className="max-w-3xl mx-auto">
-                    <div className="mb-8">
-                        <MyLink href="/blog" className="inline-flex items-center hover:text-primary transition-colors">
-                            ← Back to blog
-                        </MyLink>
-                    </div>
+                    {/* Visual Breadcrumbs */}
+                    <Breadcrumbs />
 
                     <article className="prose lg:prose-xl max-w-none dark:prose-invert prose-headings:scroll-mt-20">
                         <header className="mb-8 not-prose">
                             <h1 className="text-3xl md:text-4xl font-bold mb-2 dark:text-white">{postData.title}</h1>
 
-                            <div className="flex items-center text-gray-500 dark:text-gray-400 mb-4">
+                            <div className="flex flex-wrap items-center gap-3 text-gray-500 dark:text-gray-400 mb-4">
                                 <time dateTime={postData.date}>
                                     {new Date(postData.date).toLocaleDateString('en-US', {
                                         year: 'numeric',
@@ -115,12 +115,12 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                                 </time>
                                 {postData.author && (
                                     <>
-                                        <span className="mx-2">•</span>
+                                        <span className="hidden sm:inline">•</span>
                                         <span>{postData.author}</span>
                                     </>
                                 )}
-                                <span className="mx-2">•</span>
-                                <span>{readingTime} min read</span>
+                                <span className="hidden sm:inline">•</span>
+                                <ReadingTime minutes={readingTime} />
                             </div>
 
                             {postData.coverImage && (
@@ -160,6 +160,9 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                             </div>
                         )}
                     </article>
+
+                    {/* Previous/Next Post Navigation */}
+                    <PostNavigation prev={prev} next={next} />
 
                     {/* Related Posts */}
                     {relatedPosts.length > 0 && (

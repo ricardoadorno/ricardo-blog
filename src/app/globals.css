@@ -105,54 +105,245 @@
 }
 
 .dark {
-  /* Dark Theme - Deep Purple/Blue with Neon Accents */
-  --background: 15 12 35; /* Deep purple-black */
-  --foreground: 248 250 252; /* Light slate */
+  /* Dark Theme - Deep Purple/Blue with Neon Accents
+     Refinado para melhor contraste e legibilidade WCAG AA */
+  --background: 11 9 27; /* Mais escuro para melhor contraste */
+  --foreground: 250 250 252; /* Branco quase puro */
 
-  --card: 24 20 50; /* Dark purple-blue */
+  --card: 20 17 42; /* Card levemente mais claro que background */
   --card-foreground: 248 250 252;
 
-  --popover: 24 20 50;
+  --popover: 20 17 42;
   --popover-foreground: 248 250 252;
 
-  --primary: 139 92 246; /* Vibrant purple */
+  --primary: 147 107 255; /* Purple mais claro para contraste */
   --primary-foreground: 255 255 255;
 
-  --secondary: 79 70 229; /* Indigo */
+  --secondary: 88 80 236; /* Indigo ajustado */
   --secondary-foreground: 255 255 255;
 
-  --muted: 30 27 75; /* Muted purple */
-  --muted-foreground: 148 163 184; /* slate-400 */
+  --muted: 30 27 75; /* Mantido */
+  --muted-foreground: 156 171 194; /* Levemente mais claro (slate-350) */
 
-  --accent: 168 85 247; /* Bright purple */
+  --accent: 176 100 255; /* Accent mais vibrante */
   --accent-foreground: 255 255 255;
 
-  --destructive: 248 113 113; /* red-400 */
+  --destructive: 252 129 129; /* Red mais claro */
   --destructive-foreground: 255 255 255;
 
-  --border: 51 47 88; /* Purple-gray border */
-  --input: 51 47 88;
-  --ring: 147 51 234; /* Neon purple ring */
+  --border: 58 54 98; /* Border mais visível */
+  --input: 58 54 98;
+  --ring: 147 107 255; /* Match com primary */
 
-  /* Chart Colors - Neon theme */
-  --chart-1: 167 139 250; /* violet-400 */
-  --chart-2: 96 165 250; /* blue-400 */
-  --chart-3: 192 132 252; /* purple-400 */
-  --chart-4: 34 211 238; /* cyan-400 */
-  --chart-5: 244 114 182; /* pink-400 */
+  /* Chart Colors - Neon theme (mais vibrantes) */
+  --chart-1: 177 149 255; /* violet-350 */
+  --chart-2: 106 175 255; /* blue-350 */
+  --chart-3: 202 142 255; /* purple-350 */
+  --chart-4: 44 221 248; /* cyan-350 */
+  --chart-5: 254 124 192; /* pink-350 */
 
-  /* Glassmorphism Dark */
-  --glass-bg: rgba(24, 20, 50, 0.7);
-  --glass-border: rgba(139, 92, 246, 0.18);
-  --glass-shadow: rgba(139, 92, 246, 0.25);
+  /* Glassmorphism Dark - Refinado */
+  --glass-bg: rgba(20, 17, 42, 0.75);
+  --glass-border: rgba(147, 107, 255, 0.2);
+  --glass-shadow: rgba(147, 107, 255, 0.3);
+}
+
+/* ========================================
+   SISTEMA TIPOGRÁFICO PREMIUM
+   Baseado em Major Third Scale (1.250)
+   ======================================== */
+:root {
+  /* Type Scale - Fluid Typography */
+  --text-xs: clamp(0.69rem, 0.66rem + 0.18vw, 0.75rem);      /* 11-12px */
+  --text-sm: clamp(0.83rem, 0.78rem + 0.29vw, 0.94rem);      /* 13-15px */
+  --text-base: clamp(1rem, 0.93rem + 0.36vw, 1.13rem);       /* 16-18px */
+  --text-lg: clamp(1.2rem, 1.11rem + 0.47vw, 1.41rem);       /* 19-23px */
+  --text-xl: clamp(1.44rem, 1.32rem + 0.59vw, 1.76rem);      /* 23-28px */
+  --text-2xl: clamp(1.73rem, 1.58rem + 0.73vw, 2.2rem);      /* 28-35px */
+  --text-3xl: clamp(2.07rem, 1.89rem + 0.91vw, 2.75rem);     /* 33-44px */
+  --text-4xl: clamp(2.49rem, 2.26rem + 1.12vw, 3.43rem);     /* 40-55px */
+  --text-5xl: clamp(2.99rem, 2.71rem + 1.39vw, 4.3rem);      /* 48-69px */
+  --text-6xl: clamp(3.58rem, 3.25rem + 1.67vw, 5.37rem);     /* 57-86px */
+
+  /* Line Heights - Otimizados para leitura */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 1.75;
+  --leading-extra-loose: 2;
+
+  /* Measure - Largura ótima de linha para leitura */
+  --measure-narrow: 45ch;  /* Para sidebars, captions */
+  --measure: 65ch;         /* Ideal para corpo de texto */
+  --measure-wide: 75ch;    /* Para layouts mais largos */
+
+  /* Letter Spacing */
+  --tracking-tighter: -0.05em;
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+
+  /* Font Weights */
+  --font-thin: 100;
+  --font-extralight: 200;
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+  --font-black: 900;
+
+  /* Espaçamentos Harmônicos (baseado em 4px) */
+  --space-3xs: 0.125rem;   /* 2px */
+  --space-2xs: 0.25rem;    /* 4px */
+  --space-xs: 0.5rem;      /* 8px */
+  --space-sm: 0.75rem;     /* 12px */
+  --space-md: 1rem;        /* 16px */
+  --space-lg: 1.5rem;      /* 24px */
+  --space-xl: 2rem;        /* 32px */
+  --space-2xl: 3rem;       /* 48px */
+  --space-3xl: 4rem;       /* 64px */
+  --space-4xl: 6rem;       /* 96px */
+  --space-5xl: 8rem;       /* 128px */
+  --space-6xl: 12rem;      /* 192px */
+
+  /* Ritmo Vertical */
+  --flow-space: var(--space-lg);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Headings - Escala e ritmo otimizados */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: var(--font-bold);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    text-wrap: balance; /* Evita linhas órfãs */
+  }
+
+  h1 {
+    font-size: var(--text-5xl);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tighter);
+    margin-bottom: var(--space-lg);
+  }
+
+  h2 {
+    font-size: var(--text-4xl);
+    margin-top: var(--space-3xl);
+    margin-bottom: var(--space-lg);
+  }
+
+  h3 {
+    font-size: var(--text-3xl);
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-md);
+  }
+
+  h4 {
+    font-size: var(--text-2xl);
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-sm);
+  }
+
+  h5 {
+    font-size: var(--text-xl);
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-xs);
+  }
+
+  h6 {
+    font-size: var(--text-lg);
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-xs);
+  }
+
+  /* Parágrafos - Otimizados para leitura */
+  p {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    max-width: var(--measure);
+    margin-bottom: var(--space-lg);
+    text-wrap: pretty; /* Melhora quebra de linhas */
+  }
+
+  /* Links */
+  a {
+    color: rgb(var(--primary));
+    text-decoration-color: rgb(var(--primary) / 0.3);
+    text-decoration-thickness: 0.0625rem;
+    text-underline-offset: 0.125rem;
+    transition: all 0.2s ease;
+  }
+
+  a:hover {
+    color: rgb(var(--accent));
+    text-decoration-color: rgb(var(--accent));
+  }
+
+  /* Listas */
+  ul, ol {
+    max-width: var(--measure);
+    margin-bottom: var(--space-lg);
+    padding-left: var(--space-lg);
+  }
+
+  li {
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-xs);
+  }
+
+  /* Blockquotes */
+  blockquote {
+    max-width: var(--measure);
+    margin: var(--space-xl) 0;
+    padding-left: var(--space-lg);
+    border-left: 4px solid rgb(var(--primary));
+    font-style: italic;
+    color: rgb(var(--muted-foreground));
+  }
+
+  /* Code Inline */
+  :not(pre) > code {
+    font-size: 0.9em;
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+    background: rgb(var(--muted));
+    color: rgb(var(--foreground));
+    font-feature-settings: normal;
+  }
+
+  /* Strong e Em */
+  strong, b {
+    font-weight: var(--font-bold);
+  }
+
+  em, i {
+    font-style: italic;
+  }
+
+  /* Small */
+  small {
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
   }
 }
 
@@ -402,7 +593,70 @@ select {
    ======================================== */
 
 @layer utilities {
-  /* Gradient Backgrounds */
+  /* ========================================
+     TYPOGRAPHY UTILITIES
+     ======================================== */
+
+  /* Font Sizes */
+  .text-xs { font-size: var(--text-xs); }
+  .text-sm { font-size: var(--text-sm); }
+  .text-base { font-size: var(--text-base); }
+  .text-lg { font-size: var(--text-lg); }
+  .text-xl { font-size: var(--text-xl); }
+  .text-2xl { font-size: var(--text-2xl); }
+  .text-3xl { font-size: var(--text-3xl); }
+  .text-4xl { font-size: var(--text-4xl); }
+  .text-5xl { font-size: var(--text-5xl); }
+  .text-6xl { font-size: var(--text-6xl); }
+
+  /* Line Heights */
+  .leading-none { line-height: var(--leading-none); }
+  .leading-tight { line-height: var(--leading-tight); }
+  .leading-snug { line-height: var(--leading-snug); }
+  .leading-normal { line-height: var(--leading-normal); }
+  .leading-relaxed { line-height: var(--leading-relaxed); }
+  .leading-loose { line-height: var(--leading-loose); }
+  .leading-extra-loose { line-height: var(--leading-extra-loose); }
+
+  /* Letter Spacing */
+  .tracking-tighter { letter-spacing: var(--tracking-tighter); }
+  .tracking-tight { letter-spacing: var(--tracking-tight); }
+  .tracking-normal { letter-spacing: var(--tracking-normal); }
+  .tracking-wide { letter-spacing: var(--tracking-wide); }
+  .tracking-wider { letter-spacing: var(--tracking-wider); }
+  .tracking-widest { letter-spacing: var(--tracking-widest); }
+
+  /* Font Weights */
+  .font-thin { font-weight: var(--font-thin); }
+  .font-extralight { font-weight: var(--font-extralight); }
+  .font-light { font-weight: var(--font-light); }
+  .font-normal { font-weight: var(--font-normal); }
+  .font-medium { font-weight: var(--font-medium); }
+  .font-semibold { font-weight: var(--font-semibold); }
+  .font-bold { font-weight: var(--font-bold); }
+  .font-extrabold { font-weight: var(--font-extrabold); }
+  .font-black { font-weight: var(--font-black); }
+
+  /* Measure (max-width para leitura) */
+  .measure-narrow { max-width: var(--measure-narrow); }
+  .measure { max-width: var(--measure); }
+  .measure-wide { max-width: var(--measure-wide); }
+
+  /* Text Balance & Pretty (melhora tipografia) */
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+
+  /* Prose - Para conteúdo longform */
+  .prose-headings\:text-balance h1,
+  .prose-headings\:text-balance h2,
+  .prose-headings\:text-balance h3 {
+    text-wrap: balance;
+  }
+
+  /* ========================================
+     GRADIENT BACKGROUNDS
+     ======================================== */
+
   .gradient-primary {
     background: var(--gradient-primary);
   }
