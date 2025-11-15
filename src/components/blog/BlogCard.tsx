@@ -1,8 +1,12 @@
+"use client";
+
 import { MyLink } from '@/components/ui/MyLink';
 import { PostMeta } from '@/lib/mdx';
 import { OptimizedImage } from './OptimizedImage';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 interface BlogCardProps {
     post: PostMeta;
@@ -10,18 +14,30 @@ interface BlogCardProps {
 }
 
 export function BlogCard({ post, featured = false }: BlogCardProps) {
+    const [isHovered, setIsHovered] = useState(false);
+
     return (
-        <article
+        <motion.article
             className={cn(
                 "group relative overflow-hidden rounded-xl border border-border/50",
                 "bg-card/30 backdrop-blur-sm transition-all duration-300",
                 "hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10",
-                "hover:-translate-y-1",
                 featured && "md:col-span-2 lg:col-span-3"
             )}
+            whileHover={{
+                y: -8,
+                transition: { duration: 0.3, ease: [0.25, 0.4, 0.25, 1] as const }
+            }}
+            onHoverStart={() => setIsHovered(true)}
+            onHoverEnd={() => setIsHovered(false)}
         >
-            {/* Gradient overlay on hover */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-purple-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            {/* Animated gradient overlay */}
+            <motion.div
+                className="absolute inset-0 bg-gradient-to-br from-primary/5 via-purple-500/5 to-blue-500/5"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: isHovered ? 1 : 0 }}
+                transition={{ duration: 0.3 }}
+            />
 
             <div className={cn("relative", featured ? "md:flex md:gap-6" : "")}>
                 {/* Cover Image */}
@@ -34,19 +50,36 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
                                 : "aspect-video"
                         )}
                     >
-                        <OptimizedImage
-                            src={post.coverImage}
-                            alt={`Cover image for ${post.title}`}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
+                        <motion.div
+                            animate={{
+                                scale: isHovered ? 1.1 : 1,
+                            }}
+                            transition={{ duration: 0.5, ease: [0.25, 0.4, 0.25, 1] as const }}
+                            className="w-full h-full"
+                        >
+                            <OptimizedImage
+                                src={post.coverImage}
+                                alt={`Cover image for ${post.title}`}
+                                className="w-full h-full object-cover"
+                            />
+                        </motion.div>
 
                         {/* Category badge */}
                         {post.category && (
-                            <div className="absolute top-4 left-4">
-                                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary text-primary-foreground shadow-lg">
+                            <motion.div
+                                className="absolute top-4 left-4"
+                                initial={{ x: -20, opacity: 0 }}
+                                animate={{ x: 0, opacity: 1 }}
+                                transition={{ duration: 0.5, delay: 0.1 }}
+                            >
+                                <motion.span
+                                    className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary text-primary-foreground shadow-lg"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
                                     {post.category}
-                                </span>
-                            </div>
+                                </motion.span>
+                            </motion.div>
                         )}
                     </div>
                 )}
@@ -116,14 +149,19 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
                     <div className="pt-2">
                         <MyLink
                             href={`/blog/${post.slug}`}
-                            className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:gap-3 transition-all duration-200 group/link"
+                            className="inline-flex items-center gap-2 text-sm font-medium text-primary group/link"
                         >
                             <span>Read article</span>
-                            <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
+                            <motion.div
+                                animate={{ x: isHovered ? 4 : 0 }}
+                                transition={{ duration: 0.2 }}
+                            >
+                                <ArrowRight className="w-4 h-4" />
+                            </motion.div>
                         </MyLink>
                     </div>
                 </div>
             </div>
-        </article>
+        </motion.article>
     );
 }

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface ScrollProgressProps {
   className?: string;
@@ -53,23 +54,31 @@ export function ScrollProgress({
       aria-valuemax={100}
     >
       {/* Progress bar with gradient */}
-      <div
-        className="h-full bg-gradient-to-r from-primary via-purple-500 to-blue-500 transition-all duration-150 ease-out"
-        style={{ width: `${progress}%` }}
+      <motion.div
+        className="h-full bg-gradient-to-r from-primary via-purple-500 to-blue-500"
+        initial={{ width: "0%" }}
+        animate={{ width: `${progress}%` }}
+        transition={{ duration: 0.1, ease: "easeOut" }}
       >
         {/* Glow effect */}
         <div className="h-full w-full bg-gradient-to-r from-primary/50 via-purple-500/50 to-blue-500/50 blur-sm" />
-      </div>
+      </motion.div>
 
       {/* Optional percentage display */}
-      {showPercentage && progress > 5 && (
-        <div
-          className="absolute top-2 right-4 text-xs font-medium text-foreground/70 bg-background/80 backdrop-blur-sm px-2 py-1 rounded-md border border-border/50"
-          aria-live="polite"
-        >
-          {Math.round(progress)}%
-        </div>
-      )}
+      <AnimatePresence>
+        {showPercentage && progress > 5 && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="absolute top-2 right-4 text-xs font-medium text-foreground/70 bg-background/80 backdrop-blur-sm px-2 py-1 rounded-md border border-border/50"
+            aria-live="polite"
+          >
+            {Math.round(progress)}%
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

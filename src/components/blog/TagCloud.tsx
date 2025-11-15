@@ -1,6 +1,9 @@
+"use client";
+
 import { MyLink } from '@/components/ui/MyLink';
 import { Hash } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
 interface Tag {
   tag: string;
@@ -38,78 +41,115 @@ export function TagCloud({ tags, selectedTag, className }: TagCloudProps) {
     5: 'text-xl px-4 py-2',
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.8, y: 10 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        duration: 0.3,
+        ease: [0.25, 0.4, 0.25, 1] as const,
+      },
+    },
+  };
+
   return (
     <div className={cn(className)}>
-      <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+      <motion.h2
+        className="text-xl font-semibold mb-4 flex items-center gap-2"
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <Hash className="w-5 h-5 text-primary" />
         Topics
-      </h2>
+      </motion.h2>
 
-      <div className="flex flex-wrap gap-3">
+      <motion.div
+        className="flex flex-wrap gap-3"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         {/* All tags option */}
-        <MyLink
-          href="/blog"
-          className={cn(
-            "inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-sm font-medium",
-            "border border-border/50 transition-all duration-300",
-            "hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-0.5",
-            !selectedTag
-              ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-              : "bg-card/30 backdrop-blur-sm hover:bg-primary/10"
-          )}
-        >
-          All
-        </MyLink>
+        <motion.div variants={itemVariants}>
+          <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
+            <MyLink
+              href="/blog"
+              className={cn(
+                "inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-sm font-medium",
+                "border border-border/50 transition-all duration-300",
+                "hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10",
+                !selectedTag
+                  ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
+                  : "bg-card/30 backdrop-blur-sm hover:bg-primary/10"
+              )}
+            >
+              All
+            </MyLink>
+          </motion.div>
+        </motion.div>
 
         {tags.map((tagData, index) => {
           const size = getSize(tagData.count) as keyof typeof sizeClasses;
           const isSelected = selectedTag === tagData.tag;
 
           return (
-            <MyLink
-              key={tagData.tag}
-              href={`/tag/${tagData.tag}`}
-              className={cn(
-                "group relative inline-flex items-center gap-2",
-                "rounded-full border border-border/50 backdrop-blur-sm",
-                "font-medium transition-all duration-300",
-                "hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10",
-                "hover:-translate-y-0.5",
-                "animate-in fade-in slide-in-from-bottom-2",
-                sizeClasses[size],
-                isSelected
-                  ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20 border-primary"
-                  : "bg-card/30 hover:bg-primary/10"
-              )}
-              style={{
-                animationDelay: `${index * 50}ms`,
-                animationDuration: '400ms',
-                animationFillMode: 'both'
-              }}
-            >
-              <Hash className={cn(
-                "transition-transform group-hover:rotate-12",
-                size <= 2 ? "w-3 h-3" : size <= 3 ? "w-4 h-4" : "w-5 h-5"
-              )} />
-              <span className={cn(
-                "transition-colors",
-                isSelected ? "text-primary-foreground" : "text-foreground group-hover:text-primary"
-              )}>
-                {tagData.tag}
-              </span>
-              <span className={cn(
-                "rounded-full px-1.5 min-w-[1.5rem] text-center text-xs",
-                "transition-colors",
-                isSelected
-                  ? "bg-primary-foreground/20 text-primary-foreground"
-                  : "bg-muted text-muted-foreground group-hover:bg-primary/20 group-hover:text-primary"
-              )}>
-                {tagData.count}
-              </span>
-            </MyLink>
+            <motion.div key={tagData.tag} variants={itemVariants}>
+              <motion.div
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <MyLink
+                  href={`/tag/${tagData.tag}`}
+                  className={cn(
+                    "group relative inline-flex items-center gap-2",
+                    "rounded-full border border-border/50 backdrop-blur-sm",
+                    "font-medium transition-all duration-300",
+                    "hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10",
+                    sizeClasses[size],
+                    isSelected
+                      ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20 border-primary"
+                      : "bg-card/30 hover:bg-primary/10"
+                  )}
+                >
+                  <Hash className={cn(
+                    "transition-transform group-hover:rotate-12",
+                    size <= 2 ? "w-3 h-3" : size <= 3 ? "w-4 h-4" : "w-5 h-5"
+                  )} />
+                  <span className={cn(
+                    "transition-colors",
+                    isSelected ? "text-primary-foreground" : "text-foreground group-hover:text-primary"
+                  )}>
+                    {tagData.tag}
+                  </span>
+                  <span className={cn(
+                    "rounded-full px-1.5 min-w-[1.5rem] text-center text-xs",
+                    "transition-colors",
+                    isSelected
+                      ? "bg-primary-foreground/20 text-primary-foreground"
+                      : "bg-muted text-muted-foreground group-hover:bg-primary/20 group-hover:text-primary"
+                  )}>
+                    {tagData.count}
+                  </span>
+                </MyLink>
+              </motion.div>
+            </motion.div>
           );
         })}
-      </div>
+      </motion.div>
     </div>
   );
 }
