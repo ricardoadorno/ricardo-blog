@@ -65,13 +65,13 @@ export default function AboutPage() {
 
                     {/* Main Content Card */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.98 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-                        className="glass-card border border-border/50 rounded-2xl p-8 md:p-12 mb-10 relative overflow-hidden"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="border border-border/50 rounded-lg p-8 md:p-12 mb-10 relative bg-card/50 backdrop-blur-sm"
                     >
                         {/* Decorative gradient */}
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-primary/10 via-purple-500/5 to-transparent blur-3xl rounded-full -z-10" />
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-primary/5 via-accent/5 to-transparent blur-3xl rounded-full -z-10" />
 
                         {/* Header Section */}
                         <motion.div

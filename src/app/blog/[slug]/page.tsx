@@ -99,6 +99,12 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             {/* Scroll progress indicator */}
             <ScrollProgress />
 
+            {/* Background gradient */}
+            <div className="fixed inset-0 -z-10">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5"></div>
+                <div className="absolute inset-0 mesh-gradient opacity-20"></div>
+            </div>
+
             <main id="main-content" className="container mx-auto px-6 py-12">
                 <div className="max-w-7xl mx-auto">
                     {/* Visual Breadcrumbs */}

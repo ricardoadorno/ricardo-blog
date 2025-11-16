@@ -64,8 +64,11 @@ export function HomeContent({ featuredPosts }: HomeContentProps) {
 
   return (
     <div className="relative">
-      {/* Subtle Background */}
-      <div className="fixed inset-0 -z-10 bg-gradient-to-b from-background via-background to-muted/20"></div>
+      {/* Background gradient */}
+      <div className="fixed inset-0 -z-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5"></div>
+        <div className="absolute inset-0 mesh-gradient opacity-20"></div>
+      </div>
 
       {/* Hero Section */}
       <section className="relative min-h-[85vh] flex items-center overflow-hidden">
@@ -118,6 +121,17 @@ export function HomeContent({ featuredPosts }: HomeContentProps) {
               variants={imageVariants}
             >
               <div className="relative">
+                <motion.div
+                  className="absolute -inset-2 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 rounded-full blur-2xl"
+                  animate={{
+                    opacity: [0.3, 0.5, 0.3],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
                 <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-2 border-border/50 shadow-lg bg-gradient-to-br from-primary/10 to-accent/10">
                   {/* Replace with your profile image */}
                   <div className="absolute inset-0 flex items-center justify-center text-foreground/80 text-7xl font-bold">
@@ -157,9 +171,10 @@ export function HomeContent({ featuredPosts }: HomeContentProps) {
                 {featuredPosts.map((post) => (
                   <motion.div
                     key={post.slug}
-                    className="group border border-border/50 rounded-lg hover:border-border hover:shadow-md transition-all duration-300 bg-card overflow-hidden"
+                    className="group border border-border/50 rounded-lg hover:border-primary/20 hover:shadow-lg transition-all duration-300 bg-card overflow-hidden"
                     variants={itemVariants}
-                    whileHover={{ y: -4 }}
+                    whileHover={{ y: -6, scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
                   >
                     <div className="h-full flex flex-col">
                       <div className="h-48 overflow-hidden relative bg-muted/30">
@@ -244,14 +259,19 @@ export function HomeContent({ featuredPosts }: HomeContentProps) {
                 ].map((skill) => (
                   <motion.div
                     key={skill.name}
-                    className="group border border-border/50 bg-card rounded-lg p-6 hover:border-border hover:shadow-sm transition-all duration-300"
+                    className="group border border-border/50 bg-card rounded-lg p-6 hover:border-primary/20 hover:shadow-md transition-all duration-300"
                     variants={itemVariants}
-                    whileHover={{ y: -4 }}
+                    whileHover={{ y: -4, scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
                   >
                     <div className="flex flex-col items-center text-center">
-                      <div className="w-16 h-16 rounded-lg bg-muted/50 flex items-center justify-center text-3xl mb-4">
+                      <motion.div
+                        className="w-16 h-16 rounded-lg bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center text-3xl mb-4"
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.2 }}
+                      >
                         {skill.icon}
-                      </div>
+                      </motion.div>
                       <h3 className="font-semibold text-foreground">{skill.name}</h3>
                     </div>
                   </motion.div>

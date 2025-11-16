@@ -17,12 +17,12 @@ export function BlogCard3D({ post, featured = false }: BlogCard3DProps) {
     <motion.article
       className={cn(
         "group relative overflow-hidden rounded-lg border border-border/50",
-        "bg-card hover:border-border transition-all duration-300",
-        "hover:shadow-md",
+        "bg-card hover:border-primary/20 transition-all duration-300",
+        "hover:shadow-lg",
         featured && "md:col-span-2 lg:col-span-3"
       )}
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.2 }}
+      whileHover={{ y: -6, scale: 1.01 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
     >
       <div className={cn("relative", featured ? "md:flex md:gap-8" : "")}>
         {/* Cover Image */}
