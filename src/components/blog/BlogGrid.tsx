@@ -1,6 +1,6 @@
 "use client";
 
-import { PostMeta } from "@/lib/mdx";
+import { PostMeta } from "@/lib/types";
 import { BlogCard } from "./BlogCard";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";

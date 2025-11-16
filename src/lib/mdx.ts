@@ -1,29 +1,18 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import { compileMDX } from 'next-mdx-remote/rsc';
-import rehypePrettyCode from 'rehype-pretty-code';
-import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import { mdxComponents } from '@/components/mdx';
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import { compileMDX } from "next-mdx-remote/rsc";
+import rehypePrettyCode from "rehype-pretty-code";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import { mdxComponents } from "@/components/mdx";
+import type { PostMeta, PostData } from "./types";
 
 // Define the posts directory
 const postsDirectory = path.join(process.cwd(), 'src/content/posts');
 
-export interface PostMeta {
-  slug: string;
-  title: string;
-  date: string;
-  excerpt: string;
-  coverImage?: string;
-  author?: string;
-  tags?: string[];
-  category?: string;
-}
-
-export interface PostData extends PostMeta {
-  content: React.ReactElement;
-}
+// Re-export types for convenience
+export type { PostMeta, PostData } from "./types";
 
 // Configure rehype-pretty-code options
 const rehypePrettyCodeOptions = {
@@ -250,21 +239,33 @@ export function getAllCategories(): { category: string; count: number }[] {
 /**
  * Get adjacent posts (previous and next) for navigation
  */
-export function getAdjacentPosts(currentSlug: string): {
-  prev: PostMeta | null;
-  next: PostMeta | null;
-} {
-  const allPosts = getSortedPostsData(); // Already sorted by date (newest first)
-  const currentIndex = allPosts.findIndex((post) => post.slug === currentSlug);
+interface AdjacentPosts {
+  prev: PostMeta | null
+  next: PostMeta | null
+}
+
+export function getAdjacentPosts(currentSlug: string) {
+  const allPosts = getSortedPostsData()
+  const currentIndex = allPosts.findIndex(post => post.slug === currentSlug)
+
+  let result: AdjacentPosts
 
   if (currentIndex === -1) {
-    return { prev: null, next: null };
+    result = { prev: null, next: null }
+    return result
   }
 
-  // Previous post is older (higher index in array)
-  const prev = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
-  // Next post is newer (lower index in array)
-  const next = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
+  const prev =
+    currentIndex < allPosts.length - 1
+      ? allPosts[currentIndex + 1]
+      : null
 
-  return { prev, next };
+  const next =
+    currentIndex > 0
+      ? allPosts[currentIndex - 1]
+      : null
+
+  result = { prev, next }
+  return result
 }
+

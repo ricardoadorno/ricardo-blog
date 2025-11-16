@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { PostMeta } from '@/lib/mdx';
+import { PostMeta } from '@/lib/types';
 import { BlogGrid } from './BlogGrid';
 import { useDebounce } from '@/hooks/use-debaunce';
 import { motion, AnimatePresence } from 'framer-motion';

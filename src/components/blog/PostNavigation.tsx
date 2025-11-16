@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import type { PostMeta } from "@/lib/mdx";
+import type { PostMeta } from "@/lib/types";
 
 interface PostNavigationProps {
   prev: PostMeta | null;

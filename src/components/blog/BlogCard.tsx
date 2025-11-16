@@ -1,7 +1,7 @@
 "use client";
 
 import { MyLink } from '@/components/ui/MyLink';
-import { PostMeta } from '@/lib/mdx';
+import { PostMeta } from '@/lib/types';
 import { OptimizedImage } from './OptimizedImage';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';

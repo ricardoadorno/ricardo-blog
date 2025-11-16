@@ -102,7 +102,7 @@ export function TagCloud({ tags, selectedTag, className }: TagCloudProps) {
           </motion.div>
         </motion.div>
 
-        {tags.map((tagData, index) => {
+        {tags.map((tagData) => {
           const size = getSize(tagData.count) as keyof typeof sizeClasses;
           const isSelected = selectedTag === tagData.tag;
 
