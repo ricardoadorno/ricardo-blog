@@ -3,7 +3,6 @@
 import { PostMeta } from "@/lib/types";
 import { MyLink } from "@/components/ui/MyLink";
 import { OptimizedImage } from '@/components/blog/OptimizedImage';
-import { NewsletterForm } from '@/components/blog/NewsletterForm';
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
@@ -171,7 +170,10 @@ export function HomeContent({ featuredPosts }: HomeContentProps) {
                 {featuredPosts.map((post) => (
                   <motion.div
                     key={post.slug}
-                    className="group border border-border/50 rounded-lg hover:border-primary/20 hover:shadow-lg transition-all duration-300 bg-card overflow-hidden"
+                    className="group border border-border/50 rounded-lg hover:border-primary/30
+                    bg-gradient-to-br from-card via-card to-muted/20
+                    hover:from-card hover:via-card hover:to-primary/5
+                    shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
                     variants={itemVariants}
                     whileHover={{ y: -6, scale: 1.02 }}
                     transition={{ duration: 0.2 }}
@@ -259,7 +261,10 @@ export function HomeContent({ featuredPosts }: HomeContentProps) {
                 ].map((skill) => (
                   <motion.div
                     key={skill.name}
-                    className="group border border-border/50 bg-card rounded-lg p-6 hover:border-primary/20 hover:shadow-md transition-all duration-300"
+                    className="group border border-border/50 rounded-lg p-6
+                    bg-gradient-to-br from-card via-card to-muted/20
+                    hover:border-primary/30 hover:from-card hover:via-card hover:to-primary/5
+                    shadow-sm hover:shadow-md transition-all duration-300"
                     variants={itemVariants}
                     whileHover={{ y: -4, scale: 1.02 }}
                     transition={{ duration: 0.2 }}
@@ -282,26 +287,13 @@ export function HomeContent({ featuredPosts }: HomeContentProps) {
         </section>
       </RevealOnScroll>
 
-      {/* Newsletter Section */}
-      <RevealOnScroll>
-        <section className="py-24">
-          <div className="container mx-auto px-6">
-            <div className="max-w-5xl mx-auto">
-              <NewsletterForm
-                title="Join My Newsletter"
-                description="Get the latest articles, tutorials, and insights delivered directly to your inbox. Join over 1,000 developers staying ahead of the curve. No spam, unsubscribe anytime."
-              />
-            </div>
-          </div>
-        </section>
-      </RevealOnScroll>
-
       {/* CTA Section */}
       <RevealOnScroll>
         <section className="py-24 pb-32">
           <div className="container mx-auto px-6">
             <motion.div
-              className="max-w-4xl mx-auto text-center border border-border/50 bg-card rounded-lg p-12"
+              className="max-w-4xl mx-auto text-center border border-border/50 rounded-lg p-12
+              bg-gradient-to-br from-card via-card to-muted/20 shadow-lg"
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}

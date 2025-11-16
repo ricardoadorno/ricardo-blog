@@ -1,7 +1,6 @@
 'use client';
 
 import { MyLink } from './MyLink';
-import { NewsletterForm } from '../blog/NewsletterForm';
 import { motion } from 'framer-motion';
 import { Heart, Mail, Twitter, Github, Linkedin } from 'lucide-react';
 
@@ -26,17 +25,6 @@ export function Footer() {
             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-60"></div>
 
             <div className="container mx-auto px-4 py-16">
-                {/* Newsletter Section */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="max-w-2xl mx-auto mb-16"
-                >
-                    <NewsletterForm variant="compact" />
-                </motion.div>
-
                 {/* Sitemap Grid */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -47,7 +35,7 @@ export function Footer() {
                 >
                     {/* Brand Column */}
                     <div>
-                        <h3 className="font-bold text-lg mb-4 text-gradient-primary">Ricardo Blog</h3>
+                        <h3 className="font-bold text-lg mb-4 text-primary">Ricardo Blog</h3>
                         <p className="text-sm text-muted-foreground leading-relaxed">
                             Web development insights, tutorials, and thoughts on modern tech stack.
                         </p>
@@ -113,7 +101,7 @@ export function Footer() {
                             >
                                 <Heart className="w-4 h-4 text-red-500 fill-red-500" />
                             </motion.span>
-                            by <span className="text-gradient-primary font-semibold">Ricardo</span>
+                            by <span className="text-primary font-semibold">Ricardo</span>
                         </p>
 
                         <p className="text-xs text-muted-foreground/70">

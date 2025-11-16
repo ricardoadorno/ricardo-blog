@@ -17,8 +17,9 @@ export function BlogCard3D({ post, featured = false }: BlogCard3DProps) {
     <motion.article
       className={cn(
         "group relative overflow-hidden rounded-lg border border-border/50",
-        "bg-card hover:border-primary/20 transition-all duration-300",
-        "hover:shadow-lg",
+        "bg-gradient-to-br from-card via-card to-muted/20",
+        "hover:border-primary/30 hover:from-card hover:via-card hover:to-primary/5",
+        "shadow-sm hover:shadow-xl transition-all duration-300",
         featured && "md:col-span-2 lg:col-span-3"
       )}
       whileHover={{ y: -6, scale: 1.01 }}
