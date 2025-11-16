@@ -171,8 +171,8 @@ export function HomeContent({ featuredPosts }: HomeContentProps) {
                   <motion.div
                     key={post.slug}
                     className="group border border-border/50 rounded-lg hover:border-primary/30
-                    bg-gradient-to-br from-card via-card to-muted/20
-                    hover:from-card hover:via-card hover:to-primary/5
+                    bg-gradient-to-br from-muted/30 via-background to-muted/50
+                    hover:from-primary/5 hover:via-background hover:to-primary/10
                     shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
                     variants={itemVariants}
                     whileHover={{ y: -6, scale: 1.02 }}
@@ -262,8 +262,8 @@ export function HomeContent({ featuredPosts }: HomeContentProps) {
                   <motion.div
                     key={skill.name}
                     className="group border border-border/50 rounded-lg p-6
-                    bg-gradient-to-br from-card via-card to-muted/20
-                    hover:border-primary/30 hover:from-card hover:via-card hover:to-primary/5
+                    bg-gradient-to-br from-muted/30 via-background to-muted/50
+                    hover:border-primary/30 hover:from-primary/5 hover:via-background hover:to-primary/10
                     shadow-sm hover:shadow-md transition-all duration-300"
                     variants={itemVariants}
                     whileHover={{ y: -4, scale: 1.02 }}
@@ -293,7 +293,7 @@ export function HomeContent({ featuredPosts }: HomeContentProps) {
           <div className="container mx-auto px-6">
             <motion.div
               className="max-w-4xl mx-auto text-center border border-border/50 rounded-lg p-12
-              bg-gradient-to-br from-card via-card to-muted/20 shadow-lg"
+              bg-gradient-to-br from-muted/30 via-background to-muted/50 shadow-lg"
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}

@@ -69,7 +69,7 @@ export default function AboutPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
                         className="border border-border/50 rounded-lg p-8 md:p-12 mb-10 relative
-                        bg-gradient-to-br from-card via-card to-muted/20 shadow-lg backdrop-blur-sm"
+                        bg-gradient-to-br from-muted/30 via-background to-muted/50 shadow-lg backdrop-blur-sm"
                     >
                         {/* Decorative gradient */}
                         <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-primary/5 via-accent/5 to-transparent blur-3xl rounded-full -z-10" />
@@ -138,7 +138,7 @@ export default function AboutPage() {
                                     <motion.div
                                         whileHover={{ y: -2 }}
                                         className="text-center p-4 rounded-lg border border-border/50
-                                        bg-gradient-to-br from-card via-muted/10 to-muted/20 shadow-sm"
+                                        bg-gradient-to-br from-muted/40 via-background to-muted/60 shadow-sm"
                                     >
                                         <Code2 className="w-6 h-6 mx-auto mb-2 text-primary" />
                                         <div className="text-2xl font-bold text-foreground">5+</div>
@@ -147,7 +147,7 @@ export default function AboutPage() {
                                     <motion.div
                                         whileHover={{ y: -2 }}
                                         className="text-center p-4 rounded-lg border border-border/50
-                                        bg-gradient-to-br from-card via-muted/10 to-muted/20 shadow-sm"
+                                        bg-gradient-to-br from-muted/40 via-background to-muted/60 shadow-sm"
                                     >
                                         <Rocket className="w-6 h-6 mx-auto mb-2 text-primary" />
                                         <div className="text-2xl font-bold text-foreground">50+</div>
@@ -156,7 +156,7 @@ export default function AboutPage() {
                                     <motion.div
                                         whileHover={{ y: -2 }}
                                         className="text-center p-4 rounded-lg border border-border/50
-                                        bg-gradient-to-br from-card via-muted/10 to-muted/20 shadow-sm"
+                                        bg-gradient-to-br from-muted/40 via-background to-muted/60 shadow-sm"
                                     >
                                         <Heart className="w-6 h-6 mx-auto mb-2 text-red-500 fill-red-500" />
                                         <div className="text-2xl font-bold text-foreground">∞</div>
@@ -192,8 +192,8 @@ export default function AboutPage() {
                                         variants={itemVariants}
                                         whileHover={{ y: -2 }}
                                         className="group p-6 rounded-lg border border-border/50
-                                        bg-gradient-to-br from-card via-card to-muted/20
-                                        hover:border-primary/30 hover:to-primary/5 shadow-sm hover:shadow-md transition-all duration-300"
+                                        bg-gradient-to-br from-muted/30 via-background to-muted/50
+                                        hover:border-primary/30 hover:from-primary/5 hover:to-primary/10 shadow-sm hover:shadow-md transition-all duration-300"
                                     >
                                         <div className="flex items-start gap-4">
                                             <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-muted/50 flex items-center justify-center text-2xl">

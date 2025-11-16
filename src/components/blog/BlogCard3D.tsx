@@ -17,8 +17,8 @@ export function BlogCard3D({ post, featured = false }: BlogCard3DProps) {
     <motion.article
       className={cn(
         "group relative overflow-hidden rounded-lg border border-border/50",
-        "bg-gradient-to-br from-card via-card to-muted/20",
-        "hover:border-primary/30 hover:from-card hover:via-card hover:to-primary/5",
+        "bg-gradient-to-br from-muted/30 via-background to-muted/50",
+        "hover:border-primary/30 hover:from-primary/5 hover:via-background hover:to-primary/10",
         "shadow-sm hover:shadow-xl transition-all duration-300",
         featured && "md:col-span-2 lg:col-span-3"
       )}
