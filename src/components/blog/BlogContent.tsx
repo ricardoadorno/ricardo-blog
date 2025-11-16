@@ -78,11 +78,8 @@ export function BlogContent({ posts, tags }: BlogContentProps) {
 
   return (
     <main className="container mx-auto px-6 py-12 relative">
-      {/* Background gradient */}
-      <div className="fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5"></div>
-        <div className="absolute inset-0 mesh-gradient opacity-30"></div>
-      </div>
+      {/* Subtle Background */}
+      <div className="fixed inset-0 -z-10 bg-gradient-to-b from-background via-background to-muted/10"></div>
 
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -151,9 +148,7 @@ export function BlogContent({ posts, tags }: BlogContentProps) {
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
                 <h2 className="text-2xl font-bold">
-                  <span className="text-gradient-tech">
-                    {selectedCategory === "All" ? "Latest Articles" : selectedCategory}
-                  </span>
+                  {selectedCategory === "All" ? "Latest Articles" : selectedCategory}
                 </h2>
                 <p className="text-sm text-muted-foreground">
                   {filteredPosts.length} {filteredPosts.length === 1 ? "article" : "articles"}

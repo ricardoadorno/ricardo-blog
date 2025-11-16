@@ -64,8 +64,8 @@ export function HomeContent({ featuredPosts }: HomeContentProps) {
 
   return (
     <div className="relative">
-      {/* Animated Mesh Gradient Background */}
-      <div className="fixed inset-0 -z-10 mesh-gradient"></div>
+      {/* Subtle Background */}
+      <div className="fixed inset-0 -z-10 bg-gradient-to-b from-background via-background to-muted/20"></div>
 
       {/* Hero Section */}
       <section className="relative min-h-[85vh] flex items-center overflow-hidden">
@@ -82,7 +82,7 @@ export function HomeContent({ featuredPosts }: HomeContentProps) {
                   className="text-5xl md:text-7xl font-bold"
                   variants={itemVariants}
                 >
-                  Hi, I&apos;m <span className="text-gradient-neon">Ricardo</span>
+                  Hi, I&apos;m <span className="text-primary">Ricardo</span>
                 </motion.h1>
                 <motion.p
                   className="text-xl md:text-2xl text-muted-foreground leading-relaxed"
@@ -117,22 +117,10 @@ export function HomeContent({ featuredPosts }: HomeContentProps) {
               animate="visible"
               variants={imageVariants}
             >
-              <div className="relative float-animation">
-                <motion.div
-                  className="absolute inset-0 bg-gradient-neon rounded-full blur-3xl opacity-30"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.3, 0.5, 0.3],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                ></motion.div>
-                <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden glass shadow-2xl glow-purple">
+              <div className="relative">
+                <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-2 border-border/50 shadow-lg bg-gradient-to-br from-primary/10 to-accent/10">
                   {/* Replace with your profile image */}
-                  <div className="absolute inset-0 gradient-neon flex items-center justify-center text-white text-7xl font-bold">
+                  <div className="absolute inset-0 flex items-center justify-center text-foreground/80 text-7xl font-bold">
                     R
                   </div>
                 </div>
@@ -155,7 +143,7 @@ export function HomeContent({ featuredPosts }: HomeContentProps) {
                 transition={{ duration: 0.6 }}
               >
                 <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                  <span className="text-gradient-primary">Featured Posts</span>
+                  Featured Posts
                 </h2>
                 <p className="text-muted-foreground text-lg">Latest thoughts and tutorials</p>
               </motion.div>
@@ -169,39 +157,32 @@ export function HomeContent({ featuredPosts }: HomeContentProps) {
                 {featuredPosts.map((post) => (
                   <motion.div
                     key={post.slug}
-                    className="group card-gradient-border hover:scale-105 transition-all duration-300"
+                    className="group border border-border/50 rounded-lg hover:border-border hover:shadow-md transition-all duration-300 bg-card overflow-hidden"
                     variants={itemVariants}
-                    whileHover={{ y: -8, scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={{ y: -4 }}
                   >
-                    <div className="card-gradient-border-content h-full">
-                      <div className="h-48 rounded-lg overflow-hidden relative mb-4">
+                    <div className="h-full flex flex-col">
+                      <div className="h-48 overflow-hidden relative bg-muted/30">
                         {post.coverImage ? (
                           <OptimizedImage
                             src={post.coverImage}
                             alt={post.title}
-                            className="object-cover group-hover:scale-110 transition-transform duration-500"
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
                           />
                         ) : (
-                          <div className="w-full h-full gradient-purple-blue"></div>
+                          <div className="w-full h-full bg-gradient-to-br from-muted to-muted/50"></div>
                         )}
-                        <motion.div
-                          className="absolute inset-0 bg-gradient-neon"
-                          initial={{ opacity: 0 }}
-                          whileHover={{ opacity: 0.2 }}
-                          transition={{ duration: 0.3 }}
-                        ></motion.div>
                       </div>
-                      <div className="space-y-3">
-                        <h3 className="text-xl font-bold line-clamp-2 group-hover:text-gradient-primary transition-all">
-                          <MyLink href={`/blog/${post.slug}`}>{post.title}</MyLink>
+                      <div className="p-6 space-y-3 flex-1 flex flex-col">
+                        <h3 className="text-xl font-bold line-clamp-2 leading-tight">
+                          <MyLink href={`/blog/${post.slug}`} className="hover:text-primary transition-colors">{post.title}</MyLink>
                         </h3>
-                        <p className="text-muted-foreground line-clamp-3 text-sm leading-relaxed">{post.excerpt}</p>
+                        <p className="text-muted-foreground line-clamp-3 text-sm leading-relaxed flex-1">{post.excerpt}</p>
                         <MyLink
                           href={`/blog/${post.slug}`}
-                          className="text-primary inline-flex items-center gap-2 group/link"
+                          className="text-primary inline-flex items-center gap-2 group/link text-sm font-medium hover:underline"
                         >
-                          <span className="text-gradient-tech">Read more</span>
+                          <span>Read more</span>
                           <span className="group-hover/link:translate-x-1 transition-transform">→</span>
                         </MyLink>
                       </div>
@@ -229,8 +210,7 @@ export function HomeContent({ featuredPosts }: HomeContentProps) {
 
       {/* Skills & Expertise */}
       <RevealOnScroll>
-        <section className="py-24 relative">
-          <div className="absolute inset-0 frosted-bg"></div>
+        <section className="py-24 relative bg-muted/20">
           <div className="container mx-auto px-6 relative">
             <div className="max-w-7xl mx-auto">
               <motion.div
@@ -241,7 +221,7 @@ export function HomeContent({ featuredPosts }: HomeContentProps) {
                 transition={{ duration: 0.6 }}
               >
                 <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                  <span className="text-gradient-tech">Skills & Expertise</span>
+                  Skills & Expertise
                 </h2>
                 <p className="text-muted-foreground text-lg">Technologies I work with</p>
               </motion.div>
@@ -253,31 +233,26 @@ export function HomeContent({ featuredPosts }: HomeContentProps) {
                 viewport={{ once: true }}
               >
                 {[
-                  { name: "React", icon: "⚛️", color: "from-cyan-500 to-blue-500" },
-                  { name: "Next.js", icon: "▲", color: "from-gray-800 to-gray-600" },
-                  { name: "TypeScript", icon: "TS", color: "from-blue-600 to-blue-400" },
-                  { name: "Node.js", icon: "🟢", color: "from-green-600 to-green-400" },
-                  { name: "Tailwind CSS", icon: "🌊", color: "from-teal-500 to-cyan-500" },
-                  { name: "UI/UX Design", icon: "🎨", color: "from-purple-500 to-pink-500" },
-                  { name: "GraphQL", icon: "⬢", color: "from-pink-500 to-rose-500" },
-                  { name: "DevOps", icon: "🔄", color: "from-orange-500 to-red-500" }
+                  { name: "React", icon: "⚛️" },
+                  { name: "Next.js", icon: "▲" },
+                  { name: "TypeScript", icon: "TS" },
+                  { name: "Node.js", icon: "🟢" },
+                  { name: "Tailwind CSS", icon: "🌊" },
+                  { name: "UI/UX Design", icon: "🎨" },
+                  { name: "GraphQL", icon: "⬢" },
+                  { name: "DevOps", icon: "🔄" }
                 ].map((skill) => (
                   <motion.div
                     key={skill.name}
-                    className="group glass-card hover:glow-purple transition-all duration-300"
+                    className="group border border-border/50 bg-card rounded-lg p-6 hover:border-border hover:shadow-sm transition-all duration-300"
                     variants={itemVariants}
-                    whileHover={{ y: -8, scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    whileHover={{ y: -4 }}
                   >
                     <div className="flex flex-col items-center text-center">
-                      <motion.div
-                        className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${skill.color} flex items-center justify-center text-3xl mb-4 shadow-lg`}
-                        whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
-                        transition={{ duration: 0.5 }}
-                      >
+                      <div className="w-16 h-16 rounded-lg bg-muted/50 flex items-center justify-center text-3xl mb-4">
                         {skill.icon}
-                      </motion.div>
-                      <h3 className="font-semibold">{skill.name}</h3>
+                      </div>
+                      <h3 className="font-semibold text-foreground">{skill.name}</h3>
                     </div>
                   </motion.div>
                 ))}
@@ -306,14 +281,14 @@ export function HomeContent({ featuredPosts }: HomeContentProps) {
         <section className="py-24 pb-32">
           <div className="container mx-auto px-6">
             <motion.div
-              className="max-w-4xl mx-auto text-center glass-card"
+              className="max-w-4xl mx-auto text-center border border-border/50 bg-card rounded-lg p-12"
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Let&apos;s <span className="text-gradient-neon">Connect</span>
+                Let&apos;s <span className="text-primary">Connect</span>
               </h2>
               <p className="text-muted-foreground text-lg mb-8">
                 Interested in collaboration or have a question? Feel free to reach out!

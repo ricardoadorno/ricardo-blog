@@ -84,11 +84,11 @@ export default function AboutPage() {
                                 variants={itemVariants}
                                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
                             >
-                                About <span className="text-gradient-primary">Me</span>
+                                About <span className="text-primary">Me</span>
                             </motion.h1>
                             <motion.div
                                 variants={itemVariants}
-                                className="h-1 w-24 bg-gradient-to-r from-primary via-purple-500 to-blue-500 rounded-full"
+                                className="h-1 w-24 bg-primary rounded-full"
                             />
                         </motion.div>
 
@@ -104,28 +104,12 @@ export default function AboutPage() {
                                 variants={itemVariants}
                                 className="lg:w-1/3 flex justify-center lg:justify-start"
                             >
-                                <div className="relative group">
-                                    <motion.div
-                                        className="absolute -inset-4 bg-gradient-to-r from-primary via-purple-500 to-blue-500 rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity"
-                                        animate={{
-                                            scale: [1, 1.05, 1],
-                                            rotate: [0, 5, -5, 0],
-                                        }}
-                                        transition={{
-                                            duration: 6,
-                                            repeat: Infinity,
-                                            ease: "easeInOut",
-                                        }}
-                                    />
-                                    <div className="relative w-56 h-56 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl backdrop-blur-sm bg-card/50">
-                                        <div className="absolute inset-0 bg-gradient-to-br from-primary via-purple-600 to-blue-600 flex items-center justify-center">
-                                            <motion.span
-                                                className="text-7xl md:text-8xl font-bold text-primary-foreground"
-                                                whileHover={{ scale: 1.1, rotate: 5 }}
-                                                transition={{ type: "spring", stiffness: 300 }}
-                                            >
+                                <div className="relative">
+                                    <div className="relative w-56 h-56 md:w-64 md:h-64 rounded-full overflow-hidden border-2 border-border/50 shadow-lg bg-gradient-to-br from-primary/10 to-accent/10">
+                                        <div className="absolute inset-0 flex items-center justify-center">
+                                            <span className="text-7xl md:text-8xl font-bold text-foreground/80">
                                                 R
-                                            </motion.span>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -138,7 +122,7 @@ export default function AboutPage() {
                             >
                                 <div className="prose prose-lg max-w-none dark:prose-invert">
                                     <p className="text-lg md:text-xl leading-relaxed text-foreground/90">
-                                        Hi there! I&apos;m <span className="font-semibold text-gradient-primary">Ricardo</span>, a passionate web developer and technology enthusiast.
+                                        Hi there! I&apos;m <span className="font-semibold text-primary">Ricardo</span>, a passionate web developer and technology enthusiast.
                                         I specialize in building modern web applications with a focus on <strong>performance</strong>,
                                         <strong> accessibility</strong>, and <strong>user experience</strong>.
                                     </p>
@@ -151,24 +135,24 @@ export default function AboutPage() {
                                 {/* Quick Stats */}
                                 <div className="grid grid-cols-3 gap-4 pt-6">
                                     <motion.div
-                                        whileHover={{ y: -4, scale: 1.05 }}
-                                        className="text-center p-4 rounded-xl bg-primary/5 border border-primary/10"
+                                        whileHover={{ y: -2 }}
+                                        className="text-center p-4 rounded-lg bg-muted/30 border border-border/50"
                                     >
                                         <Code2 className="w-6 h-6 mx-auto mb-2 text-primary" />
                                         <div className="text-2xl font-bold text-foreground">5+</div>
                                         <div className="text-xs text-muted-foreground">Years</div>
                                     </motion.div>
                                     <motion.div
-                                        whileHover={{ y: -4, scale: 1.05 }}
-                                        className="text-center p-4 rounded-xl bg-purple-500/5 border border-purple-500/10"
+                                        whileHover={{ y: -2 }}
+                                        className="text-center p-4 rounded-lg bg-muted/30 border border-border/50"
                                     >
-                                        <Rocket className="w-6 h-6 mx-auto mb-2 text-purple-500" />
+                                        <Rocket className="w-6 h-6 mx-auto mb-2 text-primary" />
                                         <div className="text-2xl font-bold text-foreground">50+</div>
                                         <div className="text-xs text-muted-foreground">Projects</div>
                                     </motion.div>
                                     <motion.div
-                                        whileHover={{ y: -4, scale: 1.05 }}
-                                        className="text-center p-4 rounded-xl bg-blue-500/5 border border-blue-500/10"
+                                        whileHover={{ y: -2 }}
+                                        className="text-center p-4 rounded-lg bg-muted/30 border border-border/50"
                                     >
                                         <Heart className="w-6 h-6 mx-auto mb-2 text-red-500 fill-red-500" />
                                         <div className="text-2xl font-bold text-foreground">∞</div>
@@ -191,7 +175,7 @@ export default function AboutPage() {
                                 className="text-3xl md:text-4xl font-bold mb-3"
                             >
                                 <Sparkles className="inline-block w-8 h-8 mr-2 text-primary" />
-                                The <span className="text-gradient-tech">Tech Stack</span>
+                                The Tech Stack
                             </motion.h2>
                             <motion.p variants={itemVariants} className="text-muted-foreground mb-8 text-lg">
                                 This blog is built with modern web technologies
@@ -202,15 +186,15 @@ export default function AboutPage() {
                                     <motion.div
                                         key={tech.name}
                                         variants={itemVariants}
-                                        whileHover={{ y: -4, scale: 1.02 }}
-                                        className="group p-6 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
+                                        whileHover={{ y: -2 }}
+                                        className="group p-6 rounded-lg border border-border/50 bg-card hover:border-border hover:shadow-sm transition-all duration-300"
                                     >
                                         <div className="flex items-start gap-4">
-                                            <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-primary/10 to-purple-500/10 flex items-center justify-center text-2xl">
+                                            <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-muted/50 flex items-center justify-center text-2xl">
                                                 {tech.icon}
                                             </div>
                                             <div className="flex-1">
-                                                <h3 className="font-bold text-foreground group-hover:text-gradient-primary transition-all mb-1">
+                                                <h3 className="font-bold text-foreground mb-1">
                                                     {tech.name}
                                                 </h3>
                                                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -268,7 +252,7 @@ export default function AboutPage() {
                                 variants={itemVariants}
                                 className="text-2xl md:text-3xl font-bold mb-6"
                             >
-                                Let&apos;s <span className="text-gradient-neon">Connect</span>
+                                Let&apos;s <span className="text-primary">Connect</span>
                             </motion.h3>
 
                             <motion.div
