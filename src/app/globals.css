@@ -917,19 +917,84 @@ select {
     z-index: -1;
   }
 
-  /* Mesh Gradient Background */
+  /* Mesh Gradient Background - OKLCH Enhanced */
   .mesh-gradient {
     background:
-      radial-gradient(at 27% 37%, rgb(var(--neon-purple)) 0px, transparent 50%),
-      radial-gradient(at 97% 21%, rgb(var(--neon-blue)) 0px, transparent 50%),
-      radial-gradient(at 52% 99%, rgb(var(--neon-pink)) 0px, transparent 50%),
-      radial-gradient(at 10% 29%, rgb(var(--accent)) 0px, transparent 50%),
-      radial-gradient(at 97% 96%, rgb(var(--primary)) 0px, transparent 50%),
-      radial-gradient(at 33% 50%, rgb(var(--secondary)) 0px, transparent 50%),
-      radial-gradient(at 79% 53%, rgb(var(--primary)) 0px, transparent 50%);
-    background-color: rgb(var(--background));
-    filter: blur(100px) saturate(150%);
+      radial-gradient(circle at 20% 30%, oklch(70% 0.22 285) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, oklch(72% 0.25 305) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, oklch(60% 0.18 240) 0%, transparent 50%),
+      radial-gradient(circle at 90% 20%, oklch(65% 0.18 200) 0%, transparent 50%),
+      radial-gradient(circle at 10% 90%, oklch(60% 0.25 300) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, oklch(70% 0.22 285) 0%, transparent 50%);
+    filter: blur(120px) saturate(140%);
+    opacity: 0.12;
+  }
+
+  .dark .mesh-gradient {
+    background:
+      radial-gradient(circle at 20% 30%, oklch(50% 0.22 285) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, oklch(52% 0.25 305) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, oklch(45% 0.18 240) 0%, transparent 50%),
+      radial-gradient(circle at 90% 20%, oklch(48% 0.18 200) 0%, transparent 50%),
+      radial-gradient(circle at 10% 90%, oklch(45% 0.25 300) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, oklch(50% 0.22 285) 0%, transparent 50%);
+    filter: blur(140px) saturate(150%);
     opacity: 0.15;
+  }
+
+  /* Hero Gradient - More vibrant */
+  .hero-gradient {
+    background:
+      radial-gradient(circle at 30% 20%, oklch(70% 0.22 285 / 0.3) 0%, transparent 60%),
+      radial-gradient(circle at 70% 80%, oklch(72% 0.25 305 / 0.25) 0%, transparent 60%),
+      radial-gradient(circle at 50% 50%, oklch(60% 0.18 240 / 0.2) 0%, transparent 70%);
+    animation: gradientPulse 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes gradientPulse {
+    0% {
+      opacity: 0.6;
+      filter: blur(80px) saturate(150%);
+    }
+    100% {
+      opacity: 0.8;
+      filter: blur(100px) saturate(180%);
+    }
+  }
+
+  /* Glow effect classes */
+  .glow-sm {
+    box-shadow: 0 0 10px oklch(70% 0.22 285 / 0.3),
+                0 0 20px oklch(70% 0.22 285 / 0.1);
+  }
+
+  .glow-md {
+    box-shadow: 0 0 20px oklch(70% 0.22 285 / 0.4),
+                0 0 40px oklch(72% 0.25 305 / 0.2),
+                0 0 60px oklch(60% 0.18 240 / 0.1);
+  }
+
+  .glow-lg {
+    box-shadow: 0 0 30px oklch(70% 0.22 285 / 0.5),
+                0 0 60px oklch(72% 0.25 305 / 0.3),
+                0 0 90px oklch(60% 0.18 240 / 0.15);
+  }
+
+  .dark .glow-sm {
+    box-shadow: 0 0 15px oklch(70% 0.22 285 / 0.4),
+                0 0 30px oklch(70% 0.22 285 / 0.2);
+  }
+
+  .dark .glow-md {
+    box-shadow: 0 0 25px oklch(70% 0.22 285 / 0.5),
+                0 0 50px oklch(72% 0.25 305 / 0.3),
+                0 0 75px oklch(60% 0.18 240 / 0.15);
+  }
+
+  .dark .glow-lg {
+    box-shadow: 0 0 40px oklch(70% 0.22 285 / 0.6),
+                0 0 80px oklch(72% 0.25 305 / 0.4),
+                0 0 120px oklch(60% 0.18 240 / 0.2);
   }
 
   /* Floating Animation */
