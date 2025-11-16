@@ -1,7 +1,7 @@
 "use client";
 
 import { PostMeta } from "@/lib/types";
-import { BlogCard3D } from "./BlogCard3D";
+import { BentoBlogCard } from "./BentoBlogCard";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
@@ -24,10 +24,6 @@ export function BlogGrid({ posts, featured = false, className }: BlogGridProps) 
             </motion.div>
         );
     }
-
-    // Separate featured post from regular posts
-    const featuredPost = featured ? posts[0] : null;
-    const regularPosts = featured ? posts.slice(1) : posts;
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -53,37 +49,35 @@ export function BlogGrid({ posts, featured = false, className }: BlogGridProps) 
         },
     };
 
-    return (
-        <div className={cn("space-y-8", className)}>
-            {/* Featured Post */}
-            {featuredPost && (
-                <motion.div
-                    initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] as const }}
-                >
-                    <BlogCard3D post={featuredPost} featured={true} />
-                </motion.div>
-            )}
+    // Bento grid pattern: alternating sizes for visual interest
+    const getBentoSize = (index: number): 'small' | 'medium' | 'large' => {
+        if (featured && index === 0) return 'large';
 
-            {/* Regular Posts Grid */}
-            {regularPosts.length > 0 && (
-                <motion.div
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
-                >
-                    {regularPosts.map((post) => (
-                        <motion.div
-                            key={post.slug}
-                            variants={itemVariants}
-                        >
-                            <BlogCard3D post={post} />
-                        </motion.div>
-                    ))}
-                </motion.div>
+        // Pattern: large, medium, medium, small, small, repeat
+        const pattern = index % 5;
+        if (pattern === 0) return 'medium';
+        if (pattern === 1 || pattern === 2) return 'medium';
+        return 'small';
+    };
+
+    return (
+        <motion.div
+            className={cn(
+                "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 auto-rows-[minmax(200px,auto)] gap-4",
+                className
             )}
-        </div>
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+        >
+            {posts.map((post, index) => (
+                <motion.div
+                    key={post.slug}
+                    variants={itemVariants}
+                >
+                    <BentoBlogCard post={post} size={getBentoSize(index)} />
+                </motion.div>
+            ))}
+        </motion.div>
     );
 }
