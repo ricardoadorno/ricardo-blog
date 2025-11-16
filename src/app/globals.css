@@ -57,34 +57,50 @@
   --gradient-purple-blue: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
   --gradient-neon: linear-gradient(135deg, #9d50bb 0%, #6e48aa 50%, #4facfe 100%);
 
-  /* Light Theme Colors (Purple-Blue Aesthetic) */
-  --background: 248 250 252; /* slate-50 */
-  --foreground: 30 27 75; /* deep purple-blue */
+  /* Light Theme Colors - OKLCH Palette (Purple-Blue Aesthetic)
+     Refined for better contrast and WCAG AA/AAA compliance */
 
-  --card: 255 255 255;
-  --card-foreground: 30 27 75;
+  /* Neutral Colors */
+  --background: oklch(98% 0.01 260);     /* Quase branco com toque de azul */
+  --foreground: oklch(20% 0.02 280);     /* Quase preto, azulado - AAA */
 
-  --popover: 255 255 255;
-  --popover-foreground: 30 27 75;
+  --card: oklch(100% 0 0);               /* Branco puro */
+  --card-foreground: oklch(20% 0.02 280);
 
-  --primary: 102 126 234; /* Purple-Blue */
-  --primary-foreground: 255 255 255;
+  --popover: oklch(100% 0 0);
+  --popover-foreground: oklch(20% 0.02 280);
 
-  --secondary: 168 237 234; /* Cyan */
-  --secondary-foreground: 30 27 75;
+  /* Brand Colors - Melhorados para contraste */
+  --primary: oklch(55% 0.2 280);         /* Purple-Blue - AAA contraste */
+  --primary-foreground: oklch(99% 0 0);  /* Branco para texto */
 
-  --muted: 241 245 249; /* slate-100 */
-  --muted-foreground: 100 116 139; /* slate-500 */
+  --secondary: oklch(60% 0.15 200);      /* Cyan Teal ajustado - AAA */
+  --secondary-foreground: oklch(99% 0 0);
 
-  --accent: 139 92 246; /* violet-500 */
-  --accent-foreground: 255 255 255;
+  --accent: oklch(60% 0.25 300);         /* Violet vibrante - AAA */
+  --accent-foreground: oklch(99% 0 0);
 
-  --destructive: 239 68 68; /* red-500 */
-  --destructive-foreground: 255 255 255;
+  /* Muted & Subtle */
+  --muted: oklch(96% 0.01 260);          /* Levemente azulado */
+  --muted-foreground: oklch(50% 0.02 260); /* AA+ contraste */
 
-  --border: 226 232 240; /* slate-200 */
-  --input: 226 232 240;
-  --ring: 102 126 234; /* primary */
+  /* Semantic Colors (NEW) */
+  --destructive: oklch(55% 0.22 25);     /* Red com bom contraste - AAA */
+  --destructive-foreground: oklch(99% 0 0);
+
+  --success: oklch(55% 0.15 150);        /* Green - AAA */
+  --success-foreground: oklch(99% 0 0);
+
+  --warning: oklch(65% 0.18 80);         /* Amber/Orange - AA+ */
+  --warning-foreground: oklch(20% 0.02 280);
+
+  --info: oklch(60% 0.18 240);           /* Blue - AAA */
+  --info-foreground: oklch(99% 0 0);
+
+  /* Borders & Inputs */
+  --border: oklch(90% 0.01 260);         /* Sutil, levemente azulado */
+  --input: oklch(90% 0.01 260);
+  --ring: oklch(55% 0.2 280);            /* Match com primary */
 
   /* Chart Colors - Purple/Blue theme */
   --chart-1: 139 92 246; /* violet */
@@ -105,35 +121,50 @@
 }
 
 .dark {
-  /* Dark Theme - Deep Purple/Blue with Neon Accents
-     Refinado para melhor contraste e legibilidade WCAG AA */
-  --background: 11 9 27; /* Mais escuro para melhor contraste */
-  --foreground: 250 250 252; /* Branco quase puro */
+  /* Dark Theme - OKLCH Palette (Deep Purple/Blue with Neon Accents)
+     Refined for better contrast and WCAG AA/AAA compliance */
 
-  --card: 20 17 42; /* Card levemente mais claro que background */
-  --card-foreground: 248 250 252;
+  /* Neutral Colors */
+  --background: oklch(15% 0.02 280);     /* Azul muito escuro */
+  --foreground: oklch(98% 0.01 260);     /* Quase branco - AAA */
 
-  --popover: 20 17 42;
-  --popover-foreground: 248 250 252;
+  --card: oklch(20% 0.02 280);           /* Levemente mais claro que bg */
+  --card-foreground: oklch(98% 0.01 260);
 
-  --primary: 147 107 255; /* Purple mais claro para contraste */
-  --primary-foreground: 255 255 255;
+  --popover: oklch(20% 0.02 280);
+  --popover-foreground: oklch(98% 0.01 260);
 
-  --secondary: 88 80 236; /* Indigo ajustado */
-  --secondary-foreground: 255 255 255;
+  /* Brand Colors - Mais claros para contraste no escuro */
+  --primary: oklch(70% 0.22 285);        /* Purple-Blue claro - AAA */
+  --primary-foreground: oklch(15% 0.02 280);
 
-  --muted: 30 27 75; /* Mantido */
-  --muted-foreground: 156 171 194; /* Levemente mais claro (slate-350) */
+  --secondary: oklch(65% 0.18 200);      /* Cyan Teal - AAA */
+  --secondary-foreground: oklch(15% 0.02 280);
 
-  --accent: 176 100 255; /* Accent mais vibrante */
-  --accent-foreground: 255 255 255;
+  --accent: oklch(72% 0.25 305);         /* Violet vibrante - AAA */
+  --accent-foreground: oklch(15% 0.02 280);
 
-  --destructive: 252 129 129; /* Red mais claro */
-  --destructive-foreground: 255 255 255;
+  /* Muted & Subtle */
+  --muted: oklch(25% 0.02 280);
+  --muted-foreground: oklch(70% 0.02 260); /* AA+ contraste */
 
-  --border: 58 54 98; /* Border mais visível */
-  --input: 58 54 98;
-  --ring: 147 107 255; /* Match com primary */
+  /* Semantic Colors */
+  --destructive: oklch(65% 0.25 25);     /* Red mais claro - AAA */
+  --destructive-foreground: oklch(98% 0.01 260);
+
+  --success: oklch(65% 0.18 150);        /* Green - AAA */
+  --success-foreground: oklch(98% 0.01 260);
+
+  --warning: oklch(75% 0.2 80);          /* Amber - AA+ */
+  --warning-foreground: oklch(20% 0.02 280);
+
+  --info: oklch(70% 0.2 240);            /* Blue - AAA */
+  --info-foreground: oklch(98% 0.01 260);
+
+  /* Borders & Inputs */
+  --border: oklch(30% 0.02 280);
+  --input: oklch(30% 0.02 280);
+  --ring: oklch(70% 0.22 285);
 
   /* Chart Colors - Neon theme (mais vibrantes) */
   --chart-1: 177 149 255; /* violet-350 */
@@ -214,6 +245,37 @@
 
   /* Ritmo Vertical */
   --flow-space: var(--space-lg);
+
+  /* ========================================
+     ANIMATION TOKENS (Microinteractions)
+     ======================================== */
+
+  /* Duration */
+  --duration-instant: 0ms;          /* Sem animação */
+  --duration-fast: 150ms;           /* Hover, foco */
+  --duration-base: 250ms;           /* Transições padrão */
+  --duration-slow: 400ms;           /* Modais, slides */
+  --duration-slower: 600ms;         /* Page transitions */
+  --duration-pulse: 2000ms;         /* Pulse effects */
+  --duration-float: 6000ms;         /* Floating animations */
+
+  /* Easing (Timing Functions) */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-soft: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-default: var(--ease-soft);
+
+  /* Transformações Comuns */
+  --scale-hover: 1.02;              /* Hover sutil em cards */
+  --scale-active: 0.98;             /* Press down */
+  --scale-image-hover: 1.1;         /* Zoom em imagens */
+  --translate-hover: -4px;          /* Lift em Y */
+  --translate-arrow: 4px;           /* Seta para direita */
+  --opacity-disabled: 0.5;
+  --opacity-muted: 0.7;
 }
 
 @layer base {
@@ -890,6 +952,128 @@ select {
     );
     background-size: 1000px 100%;
     animation: shimmer 2s infinite;
+  }
+
+  /* ========================================
+     MOTION UTILITIES (Microinteractions)
+     ======================================== */
+
+  /* Hover: Lift (elevar) */
+  .motion-lift {
+    transition: transform var(--duration-fast) var(--ease-default),
+                box-shadow var(--duration-fast) var(--ease-default);
+  }
+
+  .motion-lift:hover {
+    transform: translateY(var(--translate-hover));
+  }
+
+  /* Hover: Scale (crescer) */
+  .motion-scale {
+    transition: transform var(--duration-fast) var(--ease-default);
+  }
+
+  .motion-scale:hover {
+    transform: scale(var(--scale-hover));
+  }
+
+  /* Hover: Scale image (zoom em imagem) */
+  .motion-scale-image {
+    transition: transform var(--duration-slow) var(--ease-default);
+  }
+
+  .motion-scale-image:hover {
+    transform: scale(var(--scale-image-hover));
+  }
+
+  /* Focus: Ring animado */
+  .motion-focus-ring:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgb(var(--ring) / 0.3);
+    transition: box-shadow var(--duration-fast) var(--ease-default);
+  }
+
+  /* Hover: Arrow (seta para direita) */
+  .motion-arrow-right {
+    transition: transform var(--duration-fast) var(--ease-default);
+  }
+
+  .motion-arrow-right:hover {
+    transform: translateX(var(--translate-arrow));
+  }
+
+  /* Hover: Glow (brilho) */
+  .motion-glow:hover {
+    box-shadow: 0 0 20px rgb(var(--primary) / 0.3),
+                0 0 40px rgb(var(--primary) / 0.1);
+    transition: box-shadow var(--duration-base) var(--ease-default);
+  }
+
+  /* Loading: Spin */
+  .motion-spin {
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* Loading: Pulse */
+  .motion-pulse {
+    animation: pulse var(--duration-pulse) cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  /* Entrance: Fade in */
+  .motion-fade-in {
+    animation: fadeIn var(--duration-base) var(--ease-default);
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Entrance: Slide up */
+  .motion-slide-up {
+    animation: slideUp var(--duration-base) var(--ease-default);
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Transition: Smooth all */
+  .motion-smooth {
+    transition: all var(--duration-base) var(--ease-default);
+  }
+
+  /* Transition: Smooth color */
+  .motion-smooth-colors {
+    transition: background-color var(--duration-base) var(--ease-default),
+                color var(--duration-base) var(--ease-default),
+                border-color var(--duration-base) var(--ease-default);
+  }
+
+  /* Active: Press down */
+  .active\:scale-98:active {
+    transform: scale(0.98);
   }
 }
 
