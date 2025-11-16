@@ -1,7 +1,7 @@
 "use client";
 
 import { PostMeta } from "@/lib/types";
-import { BlogCard } from "./BlogCard";
+import { BlogCard3D } from "./BlogCard3D";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
@@ -62,7 +62,7 @@ export function BlogGrid({ posts, featured = false, className }: BlogGridProps) 
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] as const }}
                 >
-                    <BlogCard post={featuredPost} featured={true} />
+                    <BlogCard3D post={featuredPost} featured={true} />
                 </motion.div>
             )}
 
@@ -79,7 +79,7 @@ export function BlogGrid({ posts, featured = false, className }: BlogGridProps) 
                             key={post.slug}
                             variants={itemVariants}
                         >
-                            <BlogCard post={post} />
+                            <BlogCard3D post={post} />
                         </motion.div>
                     ))}
                 </motion.div>

@@ -64,42 +64,60 @@ export function Search({ posts }: SearchProps) {
                     Search blog
                 </label>
                 <motion.div
-                    className="relative rounded-lg overflow-hidden"
+                    className="relative rounded-xl overflow-hidden group"
                     animate={{
-                        boxShadow: isFocused
-                            ? "0 0 0 2px hsl(var(--primary))"
-                            : "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+                        scale: isFocused ? 1.01 : 1,
                     }}
                     transition={{ duration: 0.2 }}
                 >
-                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <SearchIcon className="h-5 w-5 text-muted-foreground" />
-                    </div>
-                    <input
-                        type="text"
-                        name="search"
-                        id="search"
-                        className="block w-full rounded-lg border border-border/50 bg-card/30 backdrop-blur-sm py-3 pl-12 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-0 focus:border-transparent transition-all duration-200"
-                        placeholder="Search posts..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        onFocus={() => setIsFocused(true)}
-                        onBlur={() => setIsFocused(false)}
+                    {/* Gradient border effect */}
+                    <motion.div
+                        className="absolute -inset-[1px] rounded-xl bg-gradient-to-r from-primary via-purple-500 to-blue-500 opacity-0"
+                        animate={{
+                            opacity: isFocused ? 1 : 0,
+                        }}
+                        transition={{ duration: 0.3 }}
                     />
-                    <AnimatePresence>
-                        {searchTerm && (
-                            <motion.button
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.8 }}
+
+                    {/* Inner container */}
+                    <div className="relative rounded-xl bg-card/50 backdrop-blur-xl border border-border/50 shadow-lg group-hover:border-primary/30 transition-all duration-300">
+                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <motion.div
+                                animate={{
+                                    scale: isFocused ? 1.1 : 1,
+                                    color: isFocused ? 'hsl(var(--primary))' : 'hsl(var(--muted-foreground))',
+                                }}
                                 transition={{ duration: 0.2 }}
-                                onClick={() => setSearchTerm('')}
-                                className="absolute inset-y-0 right-0 pr-4 flex items-center text-muted-foreground hover:text-foreground transition-colors"
                             >
-                                <X className="h-5 w-5" />
-                            </motion.button>
-                        )}
-                    </AnimatePresence>
+                                <SearchIcon className="h-5 w-5" />
+                            </motion.div>
+                        </div>
+                        <input
+                            type="text"
+                            name="search"
+                            id="search"
+                            className="block w-full rounded-xl bg-transparent py-3.5 pl-12 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none transition-all duration-200"
+                            placeholder="Search posts..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            onFocus={() => setIsFocused(true)}
+                            onBlur={() => setIsFocused(false)}
+                        />
+                        <AnimatePresence>
+                            {searchTerm && (
+                                <motion.button
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.8 }}
+                                    transition={{ duration: 0.2 }}
+                                    onClick={() => setSearchTerm('')}
+                                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-muted-foreground hover:text-primary transition-colors"
+                                >
+                                    <X className="h-5 w-5" />
+                                </motion.button>
+                            )}
+                        </AnimatePresence>
+                    </div>
                 </motion.div>
                 <AnimatePresence>
                     {searchTerm && (
