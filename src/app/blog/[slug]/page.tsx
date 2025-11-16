@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import { ArticleSchema } from "@/components/seo/ArticleSchema";
 import { BreadcrumbsSchema } from "@/components/seo/BreadcrumbsSchema";
 import { OptimizedImage } from "@/components/blog/OptimizedImage";
+import { BlogCard3D } from "@/components/blog/BlogCard3D";
 import { TableOfContents } from "@/components/blog/TableOfContents";
 import { ScrollProgress } from "@/components/blog/ScrollProgress";
 import { Breadcrumbs } from "@/components/blog/Breadcrumbs";
@@ -102,11 +103,13 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                     <Breadcrumbs />
 
                     <article className="prose lg:prose-xl max-w-none dark:prose-invert prose-headings:scroll-mt-20">
-                        <header className="mb-8 not-prose">
-                            <h1 className="text-3xl md:text-4xl font-bold mb-2 dark:text-white">{postData.title}</h1>
+                        <header className="mb-12 not-prose">
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-foreground leading-tight">
+                                {postData.title}
+                            </h1>
 
-                            <div className="flex flex-wrap items-center gap-3 text-gray-500 dark:text-gray-400 mb-4">
-                                <time dateTime={postData.date}>
+                            <div className="flex flex-wrap items-center gap-4 text-base text-muted-foreground mb-6">
+                                <time dateTime={postData.date} className="font-medium">
                                     {new Date(postData.date).toLocaleDateString('en-US', {
                                         year: 'numeric',
                                         month: 'long',
@@ -115,11 +118,11 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                                 </time>
                                 {postData.author && (
                                     <>
-                                        <span className="hidden sm:inline">•</span>
-                                        <span>{postData.author}</span>
+                                        <span className="hidden sm:inline text-muted-foreground/50">•</span>
+                                        <span className="font-medium">{postData.author}</span>
                                     </>
                                 )}
-                                <span className="hidden sm:inline">•</span>
+                                <span className="hidden sm:inline text-muted-foreground/50">•</span>
                                 <ReadingTime minutes={readingTime} />
                             </div>
 
@@ -144,15 +147,16 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                         </div>
 
                         {postData.tags && postData.tags.length > 0 && (
-                            <div className="mt-8 pt-4 border-t dark:border-gray-800 not-prose">
-                                <h2 className="text-lg font-bold mb-3 dark:text-white">Tags:</h2>
-                                <div className="flex flex-wrap gap-2">
+                            <div className="mt-10 pt-6 border-t border-border/50 not-prose">
+                                <h2 className="text-lg font-bold mb-4 text-foreground">Tags</h2>
+                                <div className="flex flex-wrap gap-3">
                                     {postData.tags.map((tag) => (
                                         <MyLink
                                             key={tag}
                                             href={`/tag/${tag}`}
-                                            className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                                            className="group inline-flex items-center px-4 py-2 rounded-lg bg-primary/5 border border-primary/10 text-foreground hover:bg-primary/10 hover:border-primary/30 transition-all duration-300"
                                         >
+                                            <span className="text-primary mr-1.5 font-medium">#</span>
                                             {tag}
                                         </MyLink>
                                     ))}
@@ -166,31 +170,13 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
                     {/* Related Posts */}
                     {relatedPosts.length > 0 && (
-                        <div className="mt-12 pt-8 border-t dark:border-gray-800">
-                            <h2 className="text-2xl font-bold mb-6 dark:text-white">Related Posts</h2>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="mt-16 pt-10 border-t border-border/50">
+                            <h2 className="text-3xl font-bold mb-8 text-foreground">
+                                <span className="text-gradient-primary">Related Posts</span>
+                            </h2>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                 {relatedPosts.map(post => (
-                                    <div key={post.slug} className="border dark:border-gray-800 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                                        {post.coverImage ? (
-                                            <OptimizedImage
-                                                src={post.coverImage}
-                                                alt={post.title}
-                                                className="h-40"
-                                            />
-                                        ) : (
-                                            <div className="w-full h-40 bg-gradient-to-r from-blue-400 to-purple-500"></div>
-                                        )}
-                                        <div className="p-4">
-                                            <h3 className="text-lg font-bold mb-2 dark:text-white">
-                                                <MyLink href={`/blog/${post.slug}`} className="hover:text-blue-600 dark:hover:text-blue-400">
-                                                    {post.title}
-                                                </MyLink>
-                                            </h3>
-                                            <p className="text-gray-600 dark:text-gray-400 text-sm mb-2 line-clamp-2">
-                                                {post.excerpt}
-                                            </p>
-                                        </div>
-                                    </div>
+                                    <BlogCard3D key={post.slug} post={post} />
                                 ))}
                             </div>
                         </div>
