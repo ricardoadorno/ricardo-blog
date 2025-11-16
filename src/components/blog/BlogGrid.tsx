@@ -1,7 +1,7 @@
 "use client";
 
 import { PostMeta } from "@/lib/types";
-import { BlogCard3D } from "./BlogCard3D";
+import { BlogCard } from "./BlogCard";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
@@ -15,12 +15,12 @@ export function BlogGrid({ posts, featured = false, className }: BlogGridProps) 
     if (!posts || posts.length === 0) {
         return (
             <motion.div
-                className="text-center py-12"
+                className="text-center py-16"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
             >
-                <p className="text-muted-foreground">No posts found.</p>
+                <p className="text-muted-foreground text-lg">No posts found.</p>
             </motion.div>
         );
     }
@@ -34,8 +34,8 @@ export function BlogGrid({ posts, featured = false, className }: BlogGridProps) 
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.08,
-                delayChildren: 0.1,
+                staggerChildren: 0.1,
+                delayChildren: 0.2,
             },
         },
     };
@@ -54,7 +54,7 @@ export function BlogGrid({ posts, featured = false, className }: BlogGridProps) 
     };
 
     return (
-        <div className={cn("space-y-8", className)}>
+        <div className={cn("space-y-10", className)}>
             {/* Featured Post */}
             {featuredPost && (
                 <motion.div
@@ -62,14 +62,14 @@ export function BlogGrid({ posts, featured = false, className }: BlogGridProps) 
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] as const }}
                 >
-                    <BlogCard3D post={featuredPost} featured={true} />
+                    <BlogCard post={featuredPost} featured={true} />
                 </motion.div>
             )}
 
             {/* Regular Posts Grid */}
             {regularPosts.length > 0 && (
                 <motion.div
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
@@ -79,7 +79,7 @@ export function BlogGrid({ posts, featured = false, className }: BlogGridProps) 
                             key={post.slug}
                             variants={itemVariants}
                         >
-                            <BlogCard3D post={post} />
+                            <BlogCard post={post} />
                         </motion.div>
                     ))}
                 </motion.div>

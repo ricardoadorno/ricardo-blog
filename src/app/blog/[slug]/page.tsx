@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import { ArticleSchema } from "@/components/seo/ArticleSchema";
 import { BreadcrumbsSchema } from "@/components/seo/BreadcrumbsSchema";
 import { OptimizedImage } from "@/components/blog/OptimizedImage";
-import { BlogCard3D } from "@/components/blog/BlogCard3D";
+import { BlogCard } from "@/components/blog/BlogCard";
 import { TableOfContents } from "@/components/blog/TableOfContents";
 import { ScrollProgress } from "@/components/blog/ScrollProgress";
 import { Breadcrumbs } from "@/components/blog/Breadcrumbs";
@@ -202,7 +202,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                             </h2>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                 {relatedPosts.map(post => (
-                                    <BlogCard3D key={post.slug} post={post} />
+                                    <BlogCard key={post.slug} post={post} />
                                 ))}
                             </div>
                         </div>
