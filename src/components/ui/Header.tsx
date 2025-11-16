@@ -2,6 +2,7 @@
 
 import { MyLink } from './MyLink';
 import { ThemeToggle } from './ThemeToggle';
+import { MobileMenu } from './MobileMenu';
 import { motion } from 'framer-motion';
 import { Code2 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
@@ -40,9 +41,10 @@ export function Header() {
                         </motion.div>
                         <span className="text-gradient-primary">Ricardo Blog</span>
                     </MyLink>
-                    <div className="flex items-center gap-8">
+                    <div className="flex items-center gap-4">
+                        {/* Desktop Navigation */}
                         <motion.ul
-                            className="flex gap-8"
+                            className="hidden lg:flex gap-8"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.2, duration: 0.5 }}
@@ -61,6 +63,8 @@ export function Header() {
                                 </li>
                             ))}
                         </motion.ul>
+
+                        {/* Theme Toggle */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
@@ -68,6 +72,9 @@ export function Header() {
                         >
                             <ThemeToggle />
                         </motion.div>
+
+                        {/* Mobile Menu */}
+                        <MobileMenu items={navItems} />
                     </div>
                 </nav>
             </div>

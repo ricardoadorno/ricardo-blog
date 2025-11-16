@@ -1,17 +1,20 @@
 "use client";
 
-import { PostMeta } from "@/lib/types";
+import { PostMeta, Project } from "@/lib/types";
 import { MyLink } from "@/components/ui/MyLink";
 import { OptimizedImage } from '@/components/blog/OptimizedImage';
+import { ProjectCard } from '@/components/projects/ProjectCard';
+import { NewsletterForm } from '@/components/blog/NewsletterForm';
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 
 interface HomeContentProps {
   featuredPosts: PostMeta[];
+  featuredProjects: Project[];
 }
 
-export function HomeContent({ featuredPosts }: HomeContentProps) {
+export function HomeContent({ featuredPosts, featuredProjects }: HomeContentProps) {
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -281,6 +284,68 @@ export function HomeContent({ featuredPosts }: HomeContentProps) {
                   </motion.div>
                 ))}
               </motion.div>
+            </div>
+          </div>
+        </section>
+      </RevealOnScroll>
+
+      {/* Featured Projects */}
+      {featuredProjects.length > 0 && (
+        <RevealOnScroll>
+          <section className="py-20">
+            <div className="container mx-auto px-4">
+              <div className="max-w-6xl mx-auto">
+                <motion.div
+                  className="mb-12 text-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                    <span className="text-gradient-neon">Featured Projects</span>
+                  </h2>
+                  <p className="text-muted-foreground text-lg">Showcase of my recent work</p>
+                </motion.div>
+                <motion.div
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                  variants={containerVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                >
+                  {featuredProjects.map((project) => (
+                    <ProjectCard key={project.id} project={project} />
+                  ))}
+                </motion.div>
+                <motion.div
+                  className="mt-12 text-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                >
+                  <Button asChild variant="gradientNeon" size="lg">
+                    <MyLink href="/projects">
+                      View All Projects →
+                    </MyLink>
+                  </Button>
+                </motion.div>
+              </div>
+            </div>
+          </section>
+        </RevealOnScroll>
+      )}
+
+      {/* Newsletter Section */}
+      <RevealOnScroll>
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <NewsletterForm
+                title="Join My Newsletter"
+                description="Get the latest articles, tutorials, and insights delivered directly to your inbox. Join over 1,000 developers staying ahead of the curve. No spam, unsubscribe anytime."
+              />
             </div>
           </div>
         </section>

@@ -11,6 +11,8 @@ import { ScrollProgress } from "@/components/blog/ScrollProgress";
 import { Breadcrumbs } from "@/components/blog/Breadcrumbs";
 import { ReadingTime } from "@/components/blog/ReadingTime";
 import { PostNavigation } from "@/components/blog/PostNavigation";
+import { SocialShare } from "@/components/blog/SocialShare";
+import { AuthorBio } from "@/components/blog/AuthorBio";
 import { SkipLink } from "@/components/ui/SkipLink";
 import fs from 'fs';
 import path from 'path';
@@ -142,6 +144,16 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                             {postData.content}
                         </div>
 
+                        {/* Social Share - Inline */}
+                        <div className="not-prose">
+                            <SocialShare
+                                url={`https://ricardo-blog.com/blog/${slug}`}
+                                title={postData.title}
+                                description={postData.excerpt || ''}
+                                position="inline"
+                            />
+                        </div>
+
                         {postData.tags && postData.tags.length > 0 && (
                             <div className="mt-10 pt-6 border-t border-border/50 not-prose">
                                 <h2 className="text-lg font-bold mb-4 text-foreground">Tags</h2>
@@ -163,6 +175,14 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
                         {/* Table of Contents - Sidebar */}
                         <TableOfContents headings={headings} />
+                    </div>
+
+                    {/* Author Bio */}
+                    <div className="mt-12">
+                        <AuthorBio
+                            name="Ricardo"
+                            bio="Web developer passionate about modern technologies, clean code, and building amazing user experiences. Sharing insights about React, Next.js, TypeScript, and web development best practices."
+                        />
                     </div>
 
                     {/* Previous/Next Post Navigation */}
