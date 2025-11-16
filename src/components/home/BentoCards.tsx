@@ -6,7 +6,6 @@ import { PostMeta } from "@/lib/types";
 import { OptimizedImage } from "@/components/blog/OptimizedImage";
 import {
   Code2,
-  Palette,
   Rocket,
   Mail,
   Github,
@@ -19,89 +18,66 @@ import {
   BookOpen,
 } from "lucide-react";
 
-// Hero Card - Large featured card
-interface HeroCardProps {
-  title: string;
-  subtitle: string;
-  description: string;
-}
-
-export function HeroCard({ title, subtitle, description }: HeroCardProps) {
+// Hero Card - Clean and focused
+export function HeroCard() {
   return (
-    <div className="relative h-full flex flex-col justify-between">
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-primary/10 via-purple-500/10 to-blue-500/10 rounded-xl opacity-0"
-        whileHover={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
-      />
-      <div className="relative space-y-4">
+    <div className="relative h-full flex flex-col justify-center">
+      <div className="space-y-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
+          className="space-y-4"
         >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            </span>
+            Available for work
+          </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-            {title}
-            <span className="text-primary"> {subtitle}</span>
+            Ricardo Adorno
           </h1>
+          <p className="text-xl md:text-2xl text-muted-foreground font-light">
+            Developer & Designer
+          </p>
         </motion.div>
         <motion.p
-          className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl"
+          className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          {description}
+          Building modern web experiences with React, Next.js, and thoughtful design.
+          Exploring the intersection of code and creativity.
         </motion.p>
       </div>
-      <motion.div
-        className="relative flex gap-3 mt-6"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        <MyLink
-          href="/blog"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors group"
-        >
-          Read Blog
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-        </MyLink>
-        <MyLink
-          href="/about"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-colors"
-        >
-          About Me
-        </MyLink>
-      </motion.div>
     </div>
   );
 }
 
-// Profile Card - Visual profile card
-export function ProfileCard() {
+// About Card - Concise about section
+export function AboutCard() {
   return (
-    <div className="relative h-full flex flex-col items-center justify-center text-center p-6">
-      <motion.div
-        className="absolute -inset-2 bg-gradient-to-r from-primary/20 via-purple-500/20 to-blue-500/20 rounded-full blur-2xl"
-        animate={{
-          opacity: [0.3, 0.6, 0.3],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-      <motion.div
-        className="relative w-32 h-32 rounded-full bg-gradient-to-br from-primary/20 to-purple-500/20 border-2 border-border/50 flex items-center justify-center text-6xl font-bold shadow-lg mb-4"
-        whileHover={{ scale: 1.05, rotate: 5 }}
-        transition={{ type: "spring", stiffness: 300 }}
+    <div className="relative h-full flex flex-col justify-between p-1">
+      <div className="space-y-4">
+        <div className="flex items-center gap-2 text-primary">
+          <Code2 className="w-5 h-5" />
+          <h3 className="text-lg font-bold">About</h3>
+        </div>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          Passionate about creating seamless user experiences and writing clean, maintainable code.
+          Always learning, always building.
+        </p>
+      </div>
+      <MyLink
+        href="/about"
+        className="inline-flex items-center gap-2 text-sm font-medium text-primary group/link mt-4"
       >
-        R
-      </motion.div>
-      <h3 className="text-xl font-bold mb-2">Ricardo Adorno</h3>
-      <p className="text-sm text-muted-foreground">Developer & Designer</p>
+        <span>Learn more</span>
+        <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+      </MyLink>
     </div>
   );
 }
@@ -200,78 +176,76 @@ export function FeaturedPostCard({ post }: FeaturedPostCardProps) {
   );
 }
 
-// Quick Links Card
-interface QuickLink {
-  icon: React.ReactNode;
-  label: string;
-  href: string;
-}
-
-export function QuickLinksCard() {
-  const links: QuickLink[] = [
-    { icon: <BookOpen className="w-4 h-4" />, label: "Blog", href: "/blog" },
-    { icon: <Code2 className="w-4 h-4" />, label: "Projects", href: "/about" },
-    { icon: <Mail className="w-4 h-4" />, label: "Contact", href: "/about" },
-  ];
-
+// Contact Card
+export function ContactCard() {
   return (
-    <div className="h-full flex flex-col gap-2">
-      <h3 className="text-lg font-bold mb-2 flex items-center gap-2">
-        <Sparkles className="w-5 h-5 text-primary" />
-        Quick Links
-      </h3>
-      <div className="space-y-2">
-        {links.map((link, index) => (
-          <motion.div
-            key={link.label}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay: index * 0.1 }}
-          >
-            <MyLink
-              href={link.href}
-              className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors group"
-            >
-              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                {link.icon}
-              </div>
-              <span className="text-sm font-medium">{link.label}</span>
-              <ArrowRight className="w-4 h-4 ml-auto opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-            </MyLink>
-          </motion.div>
-        ))}
+    <div className="h-full flex flex-col justify-between">
+      <div className="space-y-4">
+        <div className="flex items-center gap-2">
+          <Mail className="w-5 h-5 text-primary" />
+          <h3 className="text-lg font-bold">Let&apos;s Connect</h3>
+        </div>
+        <p className="text-sm text-muted-foreground">
+          Open to collaborations and interesting projects.
+        </p>
+      </div>
+      <div className="flex gap-3 mt-6">
+        <motion.a
+          href="#"
+          className="flex items-center justify-center w-10 h-10 rounded-xl bg-muted/30 hover:bg-primary hover:text-primary-foreground transition-colors"
+          whileHover={{ scale: 1.1, rotate: 5 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label="GitHub"
+        >
+          <Github className="w-5 h-5" />
+        </motion.a>
+        <motion.a
+          href="#"
+          className="flex items-center justify-center w-10 h-10 rounded-xl bg-muted/30 hover:bg-primary hover:text-primary-foreground transition-colors"
+          whileHover={{ scale: 1.1, rotate: 5 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label="LinkedIn"
+        >
+          <Linkedin className="w-5 h-5" />
+        </motion.a>
+        <motion.a
+          href="#"
+          className="flex items-center justify-center w-10 h-10 rounded-xl bg-muted/30 hover:bg-primary hover:text-primary-foreground transition-colors"
+          whileHover={{ scale: 1.1, rotate: 5 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label="Twitter"
+        >
+          <Twitter className="w-5 h-5" />
+        </motion.a>
       </div>
     </div>
   );
 }
 
-// Skills Card
+// Skills Card - More comprehensive
 export function SkillsCard() {
   const skills = [
-    { name: "React", icon: "⚛️" },
-    { name: "Next.js", icon: "▲" },
-    { name: "TypeScript", icon: "TS" },
-    { name: "Tailwind", icon: "🌊" },
+    "React", "Next.js", "TypeScript", "Node.js",
+    "Tailwind CSS", "Framer Motion", "Git", "UI/UX"
   ];
 
   return (
     <div className="h-full flex flex-col">
-      <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-        <Code2 className="w-5 h-5 text-primary" />
-        Tech Stack
-      </h3>
-      <div className="grid grid-cols-2 gap-3 flex-1">
+      <div className="flex items-center gap-2 mb-4">
+        <Rocket className="w-5 h-5 text-primary" />
+        <h3 className="text-lg font-bold">Skills</h3>
+      </div>
+      <div className="flex flex-wrap gap-2">
         {skills.map((skill, index) => (
           <motion.div
-            key={skill.name}
-            className="flex flex-col items-center justify-center p-3 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors"
+            key={skill}
+            className="px-3 py-1.5 text-xs font-medium rounded-full bg-muted/50 hover:bg-primary/10 hover:text-primary transition-colors cursor-default"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, delay: index * 0.1 }}
+            transition={{ duration: 0.3, delay: index * 0.05 }}
             whileHover={{ scale: 1.05 }}
           >
-            <div className="text-2xl mb-1">{skill.icon}</div>
-            <div className="text-xs font-medium text-center">{skill.name}</div>
+            {skill}
           </motion.div>
         ))}
       </div>
@@ -279,81 +253,60 @@ export function SkillsCard() {
   );
 }
 
-// Social Links Card
-export function SocialLinksCard() {
-  const socials = [
-    { icon: <Github className="w-5 h-5" />, label: "GitHub", href: "#" },
-    { icon: <Linkedin className="w-5 h-5" />, label: "LinkedIn", href: "#" },
-    { icon: <Twitter className="w-5 h-5" />, label: "Twitter", href: "#" },
-  ];
-
+// Current Focus Card
+export function CurrentFocusCard() {
   return (
-    <div className="h-full flex flex-col justify-center">
-      <h3 className="text-lg font-bold mb-4">Connect</h3>
-      <div className="flex gap-3 justify-center">
-        {socials.map((social, index) => (
-          <motion.a
-            key={social.label}
-            href={social.href}
-            className="flex items-center justify-center w-12 h-12 rounded-xl bg-muted/30 hover:bg-primary hover:text-primary-foreground transition-colors"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: index * 0.1 }}
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            whileTap={{ scale: 0.95 }}
-            aria-label={social.label}
-          >
-            {social.icon}
-          </motion.a>
-        ))}
+    <div className="h-full flex flex-col justify-between">
+      <div className="space-y-4">
+        <div className="flex items-center gap-2">
+          <Sparkles className="w-5 h-5 text-primary" />
+          <h3 className="text-lg font-bold">Current Focus</h3>
+        </div>
+        <ul className="space-y-2 text-sm text-muted-foreground">
+          <li className="flex items-start gap-2">
+            <span className="text-primary mt-1">▸</span>
+            <span>Building scalable web applications</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-primary mt-1">▸</span>
+            <span>Exploring AI integration in UX</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-primary mt-1">▸</span>
+            <span>Writing technical articles</span>
+          </li>
+        </ul>
       </div>
     </div>
   );
 }
 
-// Recent Activity Card
-export function RecentActivityCard() {
-  const activities = [
-    { text: "Published new article", time: "2 days ago" },
-    { text: "Updated portfolio", time: "1 week ago" },
-    { text: "Started new project", time: "2 weeks ago" },
-  ];
-
+// Blog Stats Card
+export function BlogStatsCard() {
   return (
-    <div className="h-full flex flex-col">
-      <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-        <Rocket className="w-5 h-5 text-primary" />
-        Recent Activity
-      </h3>
-      <div className="space-y-3 flex-1">
-        {activities.map((activity, index) => (
-          <motion.div
-            key={index}
-            className="flex items-start gap-3"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay: index * 0.1 }}
-          >
-            <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-            <div className="flex-1">
-              <p className="text-sm">{activity.text}</p>
-              <p className="text-xs text-muted-foreground">{activity.time}</p>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-// Quote/Motto Card
-export function QuoteCard() {
-  return (
-    <div className="h-full flex flex-col justify-center items-center text-center p-6 relative">
+    <div className="h-full flex flex-col justify-center items-center text-center">
       <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-purple-500/5 rounded-xl"
+        className="space-y-2"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <BookOpen className="w-12 h-12 text-primary mx-auto mb-4" />
+        <div className="text-4xl font-bold">24+</div>
+        <div className="text-sm text-muted-foreground">Articles Published</div>
+      </motion.div>
+    </div>
+  );
+}
+
+// Call to Action Card
+export function CTACard() {
+  return (
+    <div className="h-full flex flex-col justify-center items-center text-center relative overflow-hidden">
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-br from-primary/10 via-purple-500/10 to-blue-500/10 rounded-xl"
         animate={{
-          opacity: [0.5, 1, 0.5],
+          opacity: [0.5, 0.8, 0.5],
         }}
         transition={{
           duration: 3,
@@ -361,12 +314,18 @@ export function QuoteCard() {
           ease: "easeInOut",
         }}
       />
-      <div className="relative">
-        <Palette className="w-12 h-12 text-primary mx-auto mb-4" />
-        <blockquote className="text-lg md:text-xl font-medium leading-relaxed">
-          &quot;Design is not just what it looks like. Design is how it works.&quot;
-        </blockquote>
-        <p className="text-sm text-muted-foreground mt-3">— Steve Jobs</p>
+      <div className="relative space-y-4 px-4">
+        <h3 className="text-xl md:text-2xl font-bold">Ready to Read?</h3>
+        <p className="text-sm text-muted-foreground">
+          Explore articles on web development and design
+        </p>
+        <MyLink
+          href="/blog"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors group"
+        >
+          View All Posts
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </MyLink>
       </div>
     </div>
   );

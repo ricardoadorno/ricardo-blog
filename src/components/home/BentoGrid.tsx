@@ -56,8 +56,9 @@ export function BentoCard({
   return (
     <motion.div
       className={cn(
-        "relative overflow-hidden rounded-2xl border border-border/50",
+        "group relative overflow-hidden rounded-2xl border border-border/50",
         "bg-card/50 backdrop-blur-sm p-6",
+        "shadow-lg shadow-black/5",
         gradient && "bg-gradient-to-br from-card/80 via-card/50 to-muted/30",
         hover && "hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300",
         spanClass,
@@ -67,7 +68,30 @@ export function BentoCard({
       whileHover={hover ? { y: -4 } : undefined}
       transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
     >
-      {children}
+      {/* Subtle noise texture */}
+      <div className="absolute inset-0 opacity-[0.015] pointer-events-none">
+        <svg className="w-full h-full">
+          <filter id={`noise-${span}-${rowSpan}`}>
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.8"
+              numOctaves="4"
+              stitchTiles="stitch"
+            />
+            <feColorMatrix type="saturate" values="0" />
+          </filter>
+          <rect width="100%" height="100%" filter={`url(#noise-${span}-${rowSpan})`} />
+        </svg>
+      </div>
+
+      {/* Gradient overlay on hover */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        initial={{ opacity: 0 }}
+      />
+
+      {/* Content */}
+      <div className="relative z-10">{children}</div>
     </motion.div>
   );
 }
