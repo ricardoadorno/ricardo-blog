@@ -4,8 +4,19 @@ import { MyLink } from './MyLink';
 import { ThemeToggle } from './ThemeToggle';
 import { motion } from 'framer-motion';
 import { Code2 } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
 
 export function Header() {
+    const pathname = usePathname();
+
+    const navItems = [
+        { href: '/', label: 'Home' },
+        { href: '/about', label: 'About' },
+        { href: '/projects', label: 'Projects' },
+        { href: '/blog', label: 'Blog' },
+    ];
+
     return (
         <motion.header
             className="sticky top-0 z-50 glass-header backdrop-blur-xl border-b border-border/50 shadow-lg"
@@ -34,21 +45,19 @@ export function Header() {
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.2, duration: 0.5 }}
                         >
-                            <li>
-                                <MyLink href="/" variant="nav">
-                                    Home
-                                </MyLink>
-                            </li>
-                            <li>
-                                <MyLink href="/about" variant="nav">
-                                    About
-                                </MyLink>
-                            </li>
-                            <li>
-                                <MyLink href="/blog" variant="nav">
-                                    Blog
-                                </MyLink>
-                            </li>
+                            {navItems.map((item) => (
+                                <li key={item.href}>
+                                    <MyLink
+                                        href={item.href}
+                                        variant="nav"
+                                        className={cn(
+                                            pathname === item.href && "text-primary font-semibold border-b-2 border-primary"
+                                        )}
+                                    >
+                                        {item.label}
+                                    </MyLink>
+                                </li>
+                            ))}
                         </motion.ul>
                         <motion.div
                             initial={{ opacity: 0, scale: 0.8 }}

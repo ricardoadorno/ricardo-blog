@@ -10,6 +10,7 @@ export type AppRoutes =
     | '/'
     | '/about'
     | '/blog'
+    | '/projects'
     | `/blog/${string}`
     | `/tag/${string}`;
 
@@ -25,7 +26,7 @@ const EXTERNAL_LINKS: Record<ExternalLinkType, string> = {
 };
 
 type MyLinkProps = {
-    href: AppRoutes | ExternalLinkType;
+    href: AppRoutes | ExternalLinkType | string;
     children: ReactNode;
     className?: string;
     variant?: 'default' | 'button' | 'subtle' | 'nav';
@@ -43,10 +44,12 @@ export function MyLink({
     ...props
 }: MyLinkProps & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>) {
     // Determine if the link is external
-    const isExternalLink = isExternal || Object.keys(EXTERNAL_LINKS).includes(href as string);
+    const isKnownExternalLink = Object.keys(EXTERNAL_LINKS).includes(href as string);
+    const isAbsoluteUrl = typeof href === 'string' && (href.startsWith('http://') || href.startsWith('https://') || href.startsWith('mailto:'));
+    const isExternalLink = isExternal || isKnownExternalLink || isAbsoluteUrl;
 
     // Get the correct href
-    const linkHref = isExternalLink && Object.keys(EXTERNAL_LINKS).includes(href as string)
+    const linkHref = isKnownExternalLink
         ? EXTERNAL_LINKS[href as ExternalLinkType]
         : href;
 

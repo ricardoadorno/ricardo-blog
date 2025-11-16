@@ -98,11 +98,12 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             <ScrollProgress />
 
             <main id="main-content" className="container mx-auto px-4 py-8">
-                <div className="max-w-3xl mx-auto">
+                <div className="max-w-7xl mx-auto">
                     {/* Visual Breadcrumbs */}
                     <Breadcrumbs />
 
-                    <article className="prose lg:prose-xl max-w-none dark:prose-invert prose-headings:scroll-mt-20">
+                    <div className="grid grid-cols-1 xl:grid-cols-[1fr_280px] gap-8 items-start">
+                        <article className="prose lg:prose-xl max-w-3xl dark:prose-invert prose-headings:scroll-mt-20 min-w-0">
                         <header className="mb-12 not-prose">
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-foreground leading-tight">
                                 {postData.title}
@@ -136,11 +137,6 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                             )}
                         </header>
 
-                        {/* Enhanced Table of Contents */}
-                        {headings.length > 0 && (
-                            <TableOfContents headings={headings} />
-                        )}
-
                         {/* Render MDX content */}
                         <div className="mdx-content">
                             {postData.content}
@@ -163,7 +159,11 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                                 </div>
                             </div>
                         )}
-                    </article>
+                        </article>
+
+                        {/* Table of Contents - Sidebar */}
+                        <TableOfContents headings={headings} />
+                    </div>
 
                     {/* Previous/Next Post Navigation */}
                     <PostNavigation prev={prev} next={next} />

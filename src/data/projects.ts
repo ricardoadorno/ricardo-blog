@@ -1,0 +1,113 @@
+import { Project } from '@/lib/types';
+
+export const projects: Project[] = [
+  {
+    id: 'blog-platform',
+    title: 'Modern Blog Platform',
+    description: 'A full-featured blog platform built with Next.js 15, featuring MDX support, dark mode, and advanced animations. Includes search, tagging, and table of contents.',
+    longDescription: 'This project showcases modern web development practices with static site generation, optimal performance, and beautiful UI.',
+    thumbnail: '/images/blog-project.jpg',
+    technologies: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'MDX', 'Framer Motion', 'shadcn/ui'],
+    category: 'Web App',
+    featured: true,
+    links: {
+      live: 'https://ricardo-blog.com',
+      github: 'https://github.com/ricardo/blog',
+    },
+    stats: {
+      stars: 245,
+      forks: 67,
+    },
+    date: '2025-01-01',
+    status: 'Active',
+  },
+  {
+    id: 'task-manager',
+    title: 'Task Management App',
+    description: 'A collaborative task management application with real-time updates, drag-and-drop interfaces, and team features. Built with React and Firebase.',
+    thumbnail: '/images/task-app.jpg',
+    technologies: ['React', 'Firebase', 'React DnD', 'Zustand', 'Tailwind CSS'],
+    category: 'Web App',
+    featured: true,
+    links: {
+      live: 'https://tasks.example.com',
+      github: 'https://github.com/ricardo/task-manager',
+      case_study: '/blog/building-task-manager',
+    },
+    stats: {
+      stars: 189,
+      forks: 34,
+    },
+    date: '2024-11-15',
+    status: 'Active',
+  },
+  {
+    id: 'ui-library',
+    title: 'Component Library',
+    description: 'A comprehensive React component library with 50+ components, full TypeScript support, and extensive documentation. Published on npm.',
+    thumbnail: '/images/ui-library.jpg',
+    technologies: ['React', 'TypeScript', 'Storybook', 'Rollup', 'CSS-in-JS'],
+    category: 'Library',
+    links: {
+      live: 'https://components.example.com',
+      github: 'https://github.com/ricardo/ui-library',
+    },
+    stats: {
+      stars: 432,
+      forks: 89,
+      downloads: 15000,
+    },
+    date: '2024-09-20',
+    status: 'Active',
+  },
+  {
+    id: 'ecommerce-platform',
+    title: 'E-Commerce Platform',
+    description: 'Full-stack e-commerce solution with product management, cart, checkout, and payment integration. Optimized for performance and SEO.',
+    thumbnail: '/images/ecommerce.jpg',
+    technologies: ['Next.js', 'Stripe', 'PostgreSQL', 'Prisma', 'TailwindCSS'],
+    category: 'Client Work',
+    links: {
+      live: 'https://shop.example.com',
+    },
+    date: '2024-08-10',
+    status: 'Active',
+  },
+  {
+    id: 'dev-tools',
+    title: 'Developer Tools CLI',
+    description: 'A command-line tool for developers with code scaffolding, git hooks, and productivity features. Written in Node.js.',
+    thumbnail: '/images/cli-tool.jpg',
+    technologies: ['Node.js', 'TypeScript', 'Commander.js', 'Inquirer'],
+    category: 'Tool',
+    links: {
+      github: 'https://github.com/ricardo/dev-tools',
+    },
+    stats: {
+      stars: 156,
+      forks: 23,
+      downloads: 8500,
+    },
+    date: '2024-07-05',
+    status: 'Active',
+  },
+  {
+    id: 'portfolio-site',
+    title: 'Portfolio Template',
+    description: 'A modern, responsive portfolio template with animations and dark mode. Easily customizable for developers and designers.',
+    thumbnail: '/images/portfolio.jpg',
+    technologies: ['Astro', 'TypeScript', 'Tailwind CSS', 'View Transitions'],
+    category: 'Open Source',
+    featured: false,
+    links: {
+      live: 'https://portfolio-template.example.com',
+      github: 'https://github.com/ricardo/portfolio-template',
+    },
+    stats: {
+      stars: 98,
+      forks: 45,
+    },
+    date: '2024-06-12',
+    status: 'Active',
+  },
+];
