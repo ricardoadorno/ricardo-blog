@@ -77,14 +77,14 @@ export function BlogContent({ posts, tags }: BlogContentProps) {
   };
 
   return (
-    <main className="container mx-auto px-4 py-8 relative">
+    <main className="container mx-auto px-6 py-12 relative">
       {/* Background gradient */}
       <div className="fixed inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5"></div>
         <div className="absolute inset-0 mesh-gradient opacity-30"></div>
       </div>
 
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}

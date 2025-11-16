@@ -99,12 +99,12 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             {/* Scroll progress indicator */}
             <ScrollProgress />
 
-            <main id="main-content" className="container mx-auto px-4 py-8">
+            <main id="main-content" className="container mx-auto px-6 py-12">
                 <div className="max-w-7xl mx-auto">
                     {/* Visual Breadcrumbs */}
                     <Breadcrumbs />
 
-                    <div className="grid grid-cols-1 xl:grid-cols-[1fr_280px] gap-8 items-start">
+                    <div className="grid grid-cols-1 xl:grid-cols-[1fr_280px] gap-12 items-start mt-8">
                         <article className="prose lg:prose-xl max-w-3xl dark:prose-invert prose-headings:scroll-mt-20 min-w-0">
                         <header className="mb-12 not-prose">
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-foreground leading-tight">

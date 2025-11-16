@@ -3,7 +3,7 @@
 import { MyLink } from './MyLink';
 import { NewsletterForm } from '../blog/NewsletterForm';
 import { motion } from 'framer-motion';
-import { Heart, Rss, Mail, Twitter, Github, Linkedin } from 'lucide-react';
+import { Heart, Mail, Twitter, Github, Linkedin } from 'lucide-react';
 
 export function Footer() {
     const footerLinks = {
@@ -11,12 +11,6 @@ export function Footer() {
             { href: '/', label: 'Home' },
             { href: '/about', label: 'About' },
             { href: '/blog', label: 'Blog' },
-            { href: '/projects', label: 'Projects' },
-        ],
-        resources: [
-            { href: '/uses', label: 'Uses' },
-            { href: '/contact', label: 'Contact' },
-            { href: '/rss.xml', label: 'RSS Feed', external: true },
         ],
         social: [
             { href: 'twitter', label: 'Twitter', icon: Twitter },
@@ -49,7 +43,7 @@ export function Footer() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.1 }}
-                    className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12"
+                    className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12"
                 >
                     {/* Brand Column */}
                     <div>
@@ -61,8 +55,8 @@ export function Footer() {
 
                     {/* Sitemap Column */}
                     <div>
-                        <h4 className="font-semibold mb-4">Sitemap</h4>
-                        <ul className="space-y-2">
+                        <h4 className="font-semibold mb-4">Navigation</h4>
+                        <ul className="space-y-3">
                             {footerLinks.sitemap.map((link) => (
                                 <li key={link.href}>
                                     <MyLink
@@ -77,30 +71,10 @@ export function Footer() {
                         </ul>
                     </div>
 
-                    {/* Resources Column */}
-                    <div>
-                        <h4 className="font-semibold mb-4">Resources</h4>
-                        <ul className="space-y-2">
-                            {footerLinks.resources.map((link) => (
-                                <li key={link.href}>
-                                    <MyLink
-                                        href={link.href}
-                                        variant="subtle"
-                                        isExternal={link.external}
-                                        className="text-sm hover:text-primary transition-colors inline-flex items-center gap-1"
-                                    >
-                                        {link.label}
-                                        {link.href === '/rss.xml' && <Rss className="w-3 h-3" />}
-                                    </MyLink>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
                     {/* Social Column */}
                     <div>
                         <h4 className="font-semibold mb-4">Connect</h4>
-                        <ul className="space-y-2">
+                        <ul className="space-y-3">
                             {footerLinks.social.map((link) => {
                                 const Icon = link.icon;
                                 return (

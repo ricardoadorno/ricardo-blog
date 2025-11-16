@@ -45,8 +45,8 @@ export default function AboutPage() {
                 <div className="absolute inset-0 mesh-gradient opacity-20"></div>
             </div>
 
-            <main className="container mx-auto px-4 py-8">
-                <div className="max-w-5xl mx-auto">
+            <main className="container mx-auto px-6 py-12">
+                <div className="max-w-7xl mx-auto">
                     {/* Back Button */}
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
@@ -97,7 +97,7 @@ export default function AboutPage() {
                             variants={containerVariants}
                             initial="hidden"
                             animate="visible"
-                            className="flex flex-col lg:flex-row gap-12 mb-16"
+                            className="flex flex-col lg:flex-row gap-16 mb-20"
                         >
                             {/* Profile Image */}
                             <motion.div
@@ -184,7 +184,7 @@ export default function AboutPage() {
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true }}
-                            className="mb-16"
+                            className="mb-20"
                         >
                             <motion.h2
                                 variants={itemVariants}
@@ -229,7 +229,7 @@ export default function AboutPage() {
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true }}
-                            className="prose prose-lg lg:prose-xl max-w-none dark:prose-invert mb-16"
+                            className="prose prose-lg lg:prose-xl max-w-none dark:prose-invert mb-20"
                         >
                             <motion.div variants={itemVariants}>
                                 <h2 className="flex items-center gap-2">

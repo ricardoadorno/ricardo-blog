@@ -95,22 +95,6 @@ export function AuthorBio({
           </div>
         </div>
       </div>
-
-      {/* Call to Action */}
-      <div className="mt-6 pt-6 border-t border-border/50">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">
-            Want to connect? I&apos;m always open to interesting conversations and collaborations.
-          </p>
-          <MyLink
-            href="/contact"
-            variant="button"
-            className="whitespace-nowrap"
-          >
-            Get in Touch
-          </MyLink>
-        </div>
-      </div>
     </motion.div>
   );
 }

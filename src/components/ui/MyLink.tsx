@@ -10,9 +10,6 @@ export type AppRoutes =
     | '/'
     | '/about'
     | '/blog'
-    | '/projects'
-    | '/uses'
-    | '/contact'
     | `/blog/${string}`
     | `/tag/${string}`;
 
