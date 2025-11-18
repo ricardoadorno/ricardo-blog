@@ -47,7 +47,7 @@ export function CategoryFilter({
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
               className={cn(
-                'relative px-4 py-2 rounded-lg border transition-all duration-200',
+                'relative px-4 py-2 rounded-lg border transition-all duration-200 flex items-center justify-between gap-2',
                 'hover:border-primary/50 hover:bg-primary/5',
                 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2',
                 isActive

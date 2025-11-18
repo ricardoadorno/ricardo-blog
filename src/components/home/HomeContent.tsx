@@ -12,7 +12,7 @@ import { MeshGradient, GridPattern, GrainTexture } from "@/components/ui/Backgro
 import { MyLink } from "@/components/ui/MyLink";
 import { OptimizedImage } from "@/components/blog/OptimizedImage";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Calendar } from "lucide-react";
+import { ArrowRight, Sparkles, Calendar, Code2 } from "lucide-react";
 
 interface HomeContentProps {
   featuredPosts: PostMeta[];
@@ -28,116 +28,141 @@ export function HomeContent({ featuredPosts }: HomeContentProps) {
         <GrainTexture />
       </div>
 
-      {/* Hero Section - Traditional */}
-      <section className="relative">
-        <div className="container mx-auto px-4 md:px-6 py-16 md:py-24 lg:py-32">
+      {/* Hero Section - Premium & Dynamic */}
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20">
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-6xl mx-auto"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="max-w-7xl mx-auto"
           >
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               {/* Left: Text Content */}
-              <div className="space-y-8">
+              <div className="space-y-8 text-center lg:text-left order-2 lg:order-1">
                 <div className="space-y-6">
                   <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="inline-flex justify-center lg:justify-start w-full lg:w-auto"
                   >
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-                      <span className="relative flex h-2 w-2">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium backdrop-blur-md shadow-lg shadow-primary/5">
+                      <span className="relative flex h-2.5 w-2.5">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
                       </span>
-                      Available for work
+                      Available for new projects
                     </div>
                   </motion.div>
 
-                  <motion.h1
-                    className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                  >
-                    Hi, I&apos;m{" "}
-                    <span className="text-gradient bg-gradient-to-r from-primary via-purple-500 to-blue-500 bg-clip-text text-transparent">
-                      Ricardo Adorno
-                    </span>
-                  </motion.h1>
-
-                  <motion.p
-                    className="text-xl md:text-2xl text-muted-foreground font-light leading-relaxed"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                  >
-                    Developer & Designer crafting modern web experiences with React, Next.js, and thoughtful design.
-                  </motion.p>
-
-                  <motion.p
-                    className="text-base md:text-lg text-muted-foreground leading-relaxed"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.4 }}
-                  >
-                    Passionate about creating seamless user experiences and writing clean, maintainable code.
-                    Always learning, always building.
-                  </motion.p>
+                  <div className="space-y-2">
+                    <motion.h1
+                      className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.1]"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.3 }}
+                    >
+                      Crafting <br className="hidden lg:block" />
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-500 to-pink-500 animate-gradient-x">
+                        Digital Magic
+                      </span>
+                    </motion.h1>
+                    <motion.p
+                      className="text-xl md:text-2xl text-muted-foreground font-light leading-relaxed max-w-2xl mx-auto lg:mx-0"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.4 }}
+                    >
+                      I'm <span className="font-semibold text-foreground">Ricardo Adorno</span>. I build accessible, pixel-perfect, and performant web experiences that delight users.
+                    </motion.p>
+                  </div>
                 </div>
 
                 <motion.div
-                  className="flex flex-wrap gap-4"
+                  className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.5 }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
                 >
-                  <Button asChild size="lg" variant="default" className="group">
+                  <Button asChild size="lg" className="h-12 px-8 text-lg rounded-full shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-1">
                     <MyLink href="/blog">
-                      Read My Blog
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      Explore My Work
+                      <ArrowRight className="w-5 h-5 ml-2" />
                     </MyLink>
                   </Button>
-                  <Button asChild size="lg" variant="outline">
+                  <Button asChild size="lg" variant="outline" className="h-12 px-8 text-lg rounded-full border-2 hover:bg-secondary/50 backdrop-blur-sm transition-all duration-300">
                     <MyLink href="/about">
-                      About Me
+                      More About Me
                     </MyLink>
                   </Button>
                 </motion.div>
               </div>
 
-              {/* Right: Avatar/Image */}
+              {/* Right: Dynamic Visual */}
               <motion.div
-                className="flex justify-center lg:justify-end"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
+                className="order-1 lg:order-2 flex justify-center lg:justify-end relative"
+                initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ duration: 0.8, delay: 0.4, type: "spring" }}
               >
-                <div className="relative">
-                  <motion.div
-                    className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-purple-500/20 to-blue-500/20 rounded-full blur-3xl"
-                    animate={{
-                      opacity: [0.3, 0.6, 0.3],
-                      scale: [1, 1.1, 1],
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
+                <div className="relative w-72 h-72 md:w-96 md:h-96 lg:w-[500px] lg:h-[500px]">
+                  {/* Glowing Background Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-purple-500/30 rounded-full blur-[100px] animate-pulse" />
+                  
+                  {/* Rotating Rings */}
+                  <motion.div 
+                    className="absolute inset-0 border border-primary/20 rounded-full"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                   />
-                  <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-border/50 shadow-2xl bg-gradient-to-br from-primary/10 to-purple-500/10">
-                    {/* Replace with your profile image */}
-                    <div className="absolute inset-0 flex items-center justify-center text-foreground/80 text-8xl font-bold">
-                      R
-                    </div>
+                  <motion.div 
+                    className="absolute inset-4 border border-purple-500/20 rounded-full"
+                    animate={{ rotate: -360 }}
+                    transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                  />
+                  
+                  {/* Main Image Container */}
+                  <div className="absolute inset-8 rounded-full overflow-hidden border-4 border-background/50 backdrop-blur-sm shadow-2xl bg-gradient-to-br from-primary/5 to-purple-500/5 z-10">
+                     <div className="absolute inset-0 flex items-center justify-center text-primary/20">
+                        <Sparkles className="w-32 h-32 opacity-50" />
+                     </div>
+                     {/* Placeholder for actual image */}
+                     <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-primary/5 to-purple-500/10" />
                   </div>
+
+                  {/* Floating Elements */}
+                  <motion.div
+                    className="absolute -top-4 -right-4 p-4 bg-card/80 backdrop-blur-md rounded-2xl shadow-xl border border-white/10 z-20"
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <Code2 className="w-8 h-8 text-primary" />
+                  </motion.div>
+                  
+                  <motion.div
+                    className="absolute bottom-10 -left-8 p-4 bg-card/80 backdrop-blur-md rounded-2xl shadow-xl border border-white/10 z-20"
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                  >
+                    <Sparkles className="w-8 h-8 text-purple-500" />
+                  </motion.div>
                 </div>
               </motion.div>
             </div>
           </motion.div>
         </div>
+        
+        {/* Scroll Indicator */}
+        <motion.div 
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-muted-foreground/50"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <div className="w-6 h-10 rounded-full border-2 border-current flex justify-center p-1">
+            <div className="w-1 h-2 bg-current rounded-full" />
+          </div>
+        </motion.div>
       </section>
 
       {/* Quick Info - Minimal Bento Cards */}

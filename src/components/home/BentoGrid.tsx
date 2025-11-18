@@ -56,20 +56,25 @@ export function BentoCard({
   return (
     <motion.div
       className={cn(
-        "group relative overflow-hidden rounded-2xl border border-border/50",
-        "bg-card/50 backdrop-blur-sm p-6",
+        "group relative overflow-hidden rounded-3xl border border-border/40",
+        "bg-card/30 backdrop-blur-md p-8",
         "shadow-lg shadow-black/5",
-        gradient && "bg-gradient-to-br from-card/80 via-card/50 to-muted/30",
-        hover && "hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300",
+        gradient && "bg-gradient-to-br from-card/50 via-card/30 to-muted/20",
+        hover && "hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500",
         spanClass,
         rowSpanClass,
         className
       )}
       whileHover={hover ? { y: -4 } : undefined}
-      transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
     >
+      {/* Spotlight Effect */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(600px_at_var(--mouse-x,50%)_var(--mouse-y,50%),rgba(var(--primary),0.15),transparent_40%)] z-0" />
+      </div>
+
       {/* Subtle noise texture */}
-      <div className="absolute inset-0 opacity-[0.015] pointer-events-none">
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay">
         <svg className="w-full h-full">
           <filter id={`noise-${span}-${rowSpan}`}>
             <feTurbulence
@@ -86,12 +91,29 @@ export function BentoCard({
 
       {/* Gradient overlay on hover */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         initial={{ opacity: 0 }}
       />
 
       {/* Content */}
-      <div className="relative z-10">{children}</div>
+      <div className="relative z-10 h-full">{children}</div>
+      
+      {/* Mouse tracking script for spotlight */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            document.querySelectorAll('.group').forEach(card => {
+              card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', \`\${x}px\`);
+                card.style.setProperty('--mouse-y', \`\${y}px\`);
+              });
+            });
+          `,
+        }}
+      />
     </motion.div>
   );
 }

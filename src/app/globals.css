@@ -1,9 +1,8 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 @plugin "@tailwindcss/typography";
 @plugin "tailwindcss-animate";
 
-@custom-variant dark (&:is(.dark *));
+@variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
@@ -46,137 +45,114 @@
 }
 
 :root {
-  /* Border Radius */
-  --radius: 0.75rem;
+  /* Border Radius - Slightly more rounded for modern feel */
+  --radius: 1rem;
 
-  /* Purple-Blue Gradient Palette */
-  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-secondary: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-  --gradient-accent: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
-  --gradient-tech: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-  --gradient-purple-blue: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-  --gradient-neon: linear-gradient(135deg, #9d50bb 0%, #6e48aa 50%, #4facfe 100%);
+  /* Premium Gradient Palette */
+  --gradient-primary: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+  --gradient-secondary: linear-gradient(135deg, #3b82f6 0%, #2dd4bf 100%);
+  --gradient-dark: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  --gradient-glow: radial-gradient(circle at center, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
 
-  /* Light Theme Colors - OKLCH Palette (Purple-Blue Aesthetic)
-     Refined for better contrast and WCAG AA/AAA compliance */
+  /* Light Theme - Clean & Crisp (OKLCH) */
+  --background: oklch(99% 0.002 240);    /* Pure white with tiny cool tint */
+  --foreground: oklch(20% 0.01 240);     /* Soft black */
 
-  /* Neutral Colors */
-  --background: oklch(98% 0.01 260);     /* Quase branco com toque de azul */
-  --foreground: oklch(20% 0.02 280);     /* Quase preto, azulado - AAA */
-
-  --card: oklch(100% 0 0);               /* Branco puro */
-  --card-foreground: oklch(20% 0.02 280);
+  --card: oklch(100% 0 0);
+  --card-foreground: oklch(20% 0.01 240);
 
   --popover: oklch(100% 0 0);
-  --popover-foreground: oklch(20% 0.02 280);
+  --popover-foreground: oklch(20% 0.01 240);
 
-  /* Brand Colors - Melhorados para contraste */
-  --primary: oklch(55% 0.2 280);         /* Purple-Blue - AAA contraste */
-  --primary-foreground: oklch(99% 0 0);  /* Branco para texto */
+  /* Primary: Vibrant Indigo-Purple */
+  --primary: oklch(55% 0.25 280);
+  --primary-foreground: oklch(99% 0 0);
 
-  --secondary: oklch(60% 0.15 200);      /* Cyan Teal ajustado - AAA */
-  --secondary-foreground: oklch(99% 0 0);
+  /* Secondary: Soft Slate */
+  --secondary: oklch(95% 0.01 240);
+  --secondary-foreground: oklch(30% 0.02 240);
 
-  --accent: oklch(60% 0.25 300);         /* Violet vibrante - AAA */
-  --accent-foreground: oklch(99% 0 0);
+  /* Accent: Electric Violet */
+  --accent: oklch(95% 0.02 280);
+  --accent-foreground: oklch(45% 0.2 280);
 
-  /* Muted & Subtle */
-  --muted: oklch(96% 0.01 260);          /* Levemente azulado */
-  --muted-foreground: oklch(50% 0.02 260); /* AA+ contraste */
+  --muted: oklch(96% 0.01 240);
+  --muted-foreground: oklch(55% 0.02 240);
 
-  /* Semantic Colors (NEW) */
-  --destructive: oklch(55% 0.22 25);     /* Red com bom contraste - AAA */
+  --destructive: oklch(60% 0.2 20);
   --destructive-foreground: oklch(99% 0 0);
 
-  --success: oklch(55% 0.15 150);        /* Green - AAA */
-  --success-foreground: oklch(99% 0 0);
+  --border: oklch(92% 0.01 240);
+  --input: oklch(92% 0.01 240);
+  --ring: oklch(55% 0.25 280);
 
-  --warning: oklch(65% 0.18 80);         /* Amber/Orange - AA+ */
-  --warning-foreground: oklch(20% 0.02 280);
-
-  --info: oklch(60% 0.18 240);           /* Blue - AAA */
-  --info-foreground: oklch(99% 0 0);
-
-  /* Borders & Inputs */
-  --border: oklch(90% 0.01 260);         /* Sutil, levemente azulado */
-  --input: oklch(90% 0.01 260);
-  --ring: oklch(55% 0.2 280);            /* Match com primary */
-
-  /* Chart Colors - Purple/Blue theme */
-  --chart-1: 139 92 246; /* violet */
-  --chart-2: 59 130 246; /* blue */
-  --chart-3: 168 85 247; /* purple */
-  --chart-4: 6 182 212; /* cyan */
-  --chart-5: 236 72 153; /* pink */
+  /* Chart Colors */
+  --chart-1: 260 80% 60%;
+  --chart-2: 200 80% 50%;
+  --chart-3: 320 70% 60%;
+  --chart-4: 160 60% 45%;
+  --chart-5: 40 90% 60%;
 
   /* Glassmorphism */
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.18);
-  --glass-shadow: rgba(31, 38, 135, 0.15);
-
-  /* Neon Glow */
-  --neon-purple: 147 51 234;
-  --neon-blue: 59 130 246;
-  --neon-pink: 236 72 153;
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
 }
 
 .dark {
-  /* Dark Theme - OKLCH Palette (Deep Purple/Blue with Neon Accents)
-     Refined for better contrast and WCAG AA/AAA compliance */
+  /* Dark Theme - Deep Space Aesthetic (OKLCH) */
+  --background: oklch(12% 0.02 260);     /* Deep Navy/Black */
+  --foreground: oklch(98% 0.005 240);    /* Off-white */
 
-  /* Neutral Colors */
-  --background: oklch(15% 0.02 280);     /* Azul muito escuro */
-  --foreground: oklch(98% 0.01 260);     /* Quase branco - AAA */
+  --card: oklch(16% 0.02 260);           /* Slightly lighter than bg */
+  --card-foreground: oklch(98% 0.005 240);
 
-  --card: oklch(20% 0.02 280);           /* Levemente mais claro que bg */
-  --card-foreground: oklch(98% 0.01 260);
+  --popover: oklch(16% 0.02 260);
+  --popover-foreground: oklch(98% 0.005 240);
 
-  --popover: oklch(20% 0.02 280);
-  --popover-foreground: oklch(98% 0.01 260);
+  /* Primary: Neon Purple */
+  --primary: oklch(65% 0.25 280);
+  --primary-foreground: oklch(12% 0.02 260);
 
-  /* Brand Colors - Mais claros para contraste no escuro */
-  --primary: oklch(70% 0.22 285);        /* Purple-Blue claro - AAA */
-  --primary-foreground: oklch(15% 0.02 280);
+  /* Secondary: Deep Slate */
+  --secondary: oklch(20% 0.03 260);
+  --secondary-foreground: oklch(98% 0.005 240);
 
-  --secondary: oklch(65% 0.18 200);      /* Cyan Teal - AAA */
-  --secondary-foreground: oklch(15% 0.02 280);
+  /* Accent: Glowing Violet */
+  --accent: oklch(25% 0.05 280);
+  --accent-foreground: oklch(98% 0.005 240);
 
-  --accent: oklch(72% 0.25 305);         /* Violet vibrante - AAA */
-  --accent-foreground: oklch(15% 0.02 280);
+  --muted: oklch(20% 0.02 260);
+  --muted-foreground: oklch(70% 0.02 240);
 
-  /* Muted & Subtle */
-  --muted: oklch(25% 0.02 280);
-  --muted-foreground: oklch(70% 0.02 260); /* AA+ contraste */
+  --destructive: oklch(60% 0.2 20);
+  --destructive-foreground: oklch(98% 0.005 240);
 
-  /* Semantic Colors */
-  --destructive: oklch(65% 0.25 25);     /* Red mais claro - AAA */
-  --destructive-foreground: oklch(98% 0.01 260);
+  --border: oklch(25% 0.02 260);
+  --input: oklch(25% 0.02 260);
+  --ring: oklch(65% 0.25 280);
 
-  --success: oklch(65% 0.18 150);        /* Green - AAA */
-  --success-foreground: oklch(98% 0.01 260);
+  /* Chart Colors - Neon */
+  --chart-1: 260 100% 70%;
+  --chart-2: 200 100% 60%;
+  --chart-3: 320 90% 70%;
+  --chart-4: 160 80% 55%;
+  --chart-5: 40 100% 70%;
 
-  --warning: oklch(75% 0.2 80);          /* Amber - AA+ */
-  --warning-foreground: oklch(20% 0.02 280);
+  /* Glassmorphism Dark */
+  --glass-bg: rgba(15, 23, 42, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
 
-  --info: oklch(70% 0.2 240);            /* Blue - AAA */
-  --info-foreground: oklch(98% 0.01 260);
-
-  /* Borders & Inputs */
-  --border: oklch(30% 0.02 280);
-  --input: oklch(30% 0.02 280);
-  --ring: oklch(70% 0.22 285);
-
-  /* Chart Colors - Neon theme (mais vibrantes) */
-  --chart-1: 177 149 255; /* violet-350 */
-  --chart-2: 106 175 255; /* blue-350 */
-  --chart-3: 202 142 255; /* purple-350 */
-  --chart-4: 44 221 248; /* cyan-350 */
-  --chart-5: 254 124 192; /* pink-350 */
-
-  /* Glassmorphism Dark - Refinado */
-  --glass-bg: rgba(20, 17, 42, 0.75);
-  --glass-border: rgba(147, 107, 255, 0.2);
-  --glass-shadow: rgba(147, 107, 255, 0.3);
+/* Animation Tokens */
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+  
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-slow: 700ms;
 }
 
 /* ========================================

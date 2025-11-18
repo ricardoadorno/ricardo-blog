@@ -63,7 +63,7 @@ export function AboutCard() {
     <div className="relative h-full flex flex-col justify-between p-1">
       <div className="space-y-4">
         <div className="flex items-center gap-2 text-primary">
-          <Code2 className="w-5 h-5" />
+          <Code2 className="w-5 h-5 shrink-0" />
           <h3 className="text-lg font-bold">About</h3>
         </div>
         <p className="text-sm text-muted-foreground leading-relaxed">
@@ -94,7 +94,7 @@ export function StatsCard({ icon, value, label, trend }: StatsCardProps) {
   return (
     <div className="relative h-full flex flex-col justify-between">
       <motion.div
-        className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-purple-500/20"
+        className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-purple-500/20 shrink-0"
         whileHover={{ scale: 1.1, rotate: 10 }}
         transition={{ type: "spring", stiffness: 300 }}
       >
@@ -111,8 +111,8 @@ export function StatsCard({ icon, value, label, trend }: StatsCardProps) {
             {value}
           </motion.div>
           {trend && (
-            <span className="text-sm text-green-500 flex items-center mb-1">
-              <TrendingUp className="w-3 h-3 mr-1" />
+            <span className="text-sm text-green-500 flex items-center mb-1 shrink-0">
+              <TrendingUp className="w-3 h-3 mr-1 shrink-0" />
               {trend}
             </span>
           )}
@@ -163,11 +163,12 @@ export function FeaturedPostCard({ post }: FeaturedPostCardProps) {
           <p className="text-sm text-muted-foreground line-clamp-2 mb-3 flex-1">
             {post.excerpt}
           </p>
-          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <Calendar className="w-3 h-3" />
+          <div className="flex items-center gap-2 text-xs text-muted-foreground mt-auto pt-3">
+            <Calendar className="w-3 h-3 shrink-0" />
             {new Date(post.date).toLocaleDateString("en-US", {
               month: "short",
               day: "numeric",
+              year: "numeric",
             })}
           </div>
         </div>
@@ -182,7 +183,7 @@ export function ContactCard() {
     <div className="h-full flex flex-col justify-between">
       <div className="space-y-4">
         <div className="flex items-center gap-2">
-          <Mail className="w-5 h-5 text-primary" />
+          <Mail className="w-5 h-5 text-primary shrink-0" />
           <h3 className="text-lg font-bold">Let&apos;s Connect</h3>
         </div>
         <p className="text-sm text-muted-foreground">
@@ -232,7 +233,7 @@ export function SkillsCard() {
   return (
     <div className="h-full flex flex-col">
       <div className="flex items-center gap-2 mb-4">
-        <Rocket className="w-5 h-5 text-primary" />
+        <Rocket className="w-5 h-5 text-primary shrink-0" />
         <h3 className="text-lg font-bold">Skills</h3>
       </div>
       <div className="flex flex-wrap gap-2">
@@ -259,7 +260,7 @@ export function CurrentFocusCard() {
     <div className="h-full flex flex-col justify-between">
       <div className="space-y-4">
         <div className="flex items-center gap-2">
-          <Sparkles className="w-5 h-5 text-primary" />
+          <Sparkles className="w-5 h-5 text-primary shrink-0" />
           <h3 className="text-lg font-bold">Current Focus</h3>
         </div>
         <ul className="space-y-2 text-sm text-muted-foreground">
@@ -272,7 +273,7 @@ export function CurrentFocusCard() {
             <span>Exploring AI integration in UX</span>
           </li>
           <li className="flex items-start gap-2">
-            <span className="text-primary mt-1">▸</span>
+            <span className="text-primary mt-1 shrink-0">▸</span>
             <span>Writing technical articles</span>
           </li>
         </ul>
@@ -324,7 +325,7 @@ export function CTACard() {
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors group"
         >
           View All Posts
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform shrink-0" />
         </MyLink>
       </div>
     </div>

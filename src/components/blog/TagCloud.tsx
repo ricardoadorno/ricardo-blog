@@ -32,13 +32,13 @@ export function TagCloud({ tags, selectedTag, className }: TagCloudProps) {
     return Math.ceil(((count - minCount) / (maxCount - minCount)) * 4) + 1;
   };
 
-  // Size classes mapping
+  // Size classes mapping - Reduced range for better visual consistency
   const sizeClasses = {
     1: 'text-xs px-2.5 py-1',
-    2: 'text-sm px-3 py-1.5',
-    3: 'text-base px-3.5 py-1.5',
-    4: 'text-lg px-4 py-2',
-    5: 'text-xl px-4 py-2',
+    2: 'text-xs px-3 py-1.5 font-semibold',
+    3: 'text-sm px-3 py-1.5',
+    4: 'text-sm px-3.5 py-1.5 font-semibold',
+    5: 'text-sm px-4 py-2 font-bold',
   };
 
   const containerVariants = {
@@ -126,7 +126,7 @@ export function TagCloud({ tags, selectedTag, className }: TagCloudProps) {
                   )}
                 >
                   <Hash className={cn(
-                    "transition-transform group-hover:rotate-12",
+                    "transition-transform group-hover:rotate-12 shrink-0",
                     size <= 2 ? "w-3 h-3" : size <= 3 ? "w-4 h-4" : "w-5 h-5"
                   )} />
                   <span className={cn(
